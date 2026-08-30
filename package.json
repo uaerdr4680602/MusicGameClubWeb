@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "deploy": "npm run build && git add -f dist && git commit -m 'Deploy' && git subtree push --prefix dist origin gh-pages && git reset HEAD~1",
+    "deploy": "npm run build && git add -f dist && git commit -m 'Deploy' && git push origin $(git subtree split --prefix dist main):refs/heads/gh-pages --force && git reset HEAD~1",
     "lint": "oxlint",
     "preview": "vite preview"
   },
