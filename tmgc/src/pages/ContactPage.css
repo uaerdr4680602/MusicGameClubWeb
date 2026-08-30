@@ -1,0 +1,83 @@
+/* ===== Contact Page ===== */
+.contact-page {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* background character images */
+.bg-cha {
+  width: 100%;
+  height: 100%;
+  filter: brightness(40%);
+}
+
+.contact-page .left-img {
+  display: block;
+  width: 55%;
+  height: auto;
+  position: absolute;
+  left: 8%;
+  top: 12%;
+}
+
+.contact-page .right-img {
+  display: block;
+  width: 70%;
+  height: auto;
+  position: absolute;
+  right: 4%;
+  top: 3%;
+}
+
+/* social links */
+.contact-page .msg {
+  border-radius: 15px;
+  margin: 10px;
+  font-size: clamp(19px, 2vw, 35px);
+  padding: 10px 20px;
+  border-collapse: separate;
+  border-spacing: 0 20px;
+  text-align: center;
+}
+
+.contact-page .msg a svg {
+  width: 80px;
+  height: 80px;
+  vertical-align: middle;
+  color: #fff;
+}
+
+.contact-page .msg svg:hover {
+  transform: scale(0.94);
+  color: #4FC0C4;
+}
+
+.contact-page .msg-table {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2000;
+}
+
+/* ===== Mobile ===== */
+@media screen and (max-width: 768px) {
+  .contact-page .msg-table { z-index: 1; }
+
+  .contact-page .msg a svg {
+    width: 50px;
+    height: 50px;
+  }
+
+  .contact-page .left-img {
+    width: 80%;
+    left: -3%;
+    top: 25%;
+  }
+
+  .contact-page .right-img {
+    width: 100%;
+    right: 0;
+    top: 30%;
+  }
+}

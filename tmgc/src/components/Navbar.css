@@ -1,0 +1,141 @@
+/* ===== Navbar Styles (shared across all pages) ===== */
+.top {
+  font-size: clamp(14px, 2vw, 30px);
+  height: 30px;
+  width: 100%;
+  position: fixed;
+  top: 5%;
+  right: 10px;
+  opacity: 1;
+  padding: 10px;
+  z-index: 2001;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* hamburger / close button */
+.menu-toggle {
+  font-size: clamp(20px, 3vw, 80px);
+  margin-right: 3%;
+  background: none;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  z-index: 1009;
+}
+
+/* slide-in nav panel */
+.menu-links {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  padding: 0;
+  text-align: right;
+  right: -30%;
+  width: 20%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  align-items: flex-end;
+  transition: right 0.3s ease;
+  z-index: 1005;
+}
+
+.menu-links.active {
+  right: 0%;
+}
+
+.menu-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 2vw;
+  padding: 15px;
+  display: block;
+  text-align: right;
+  font-family: 'Michroma', sans-serif;
+}
+
+.menu-links a:hover {
+  color: #4FC0C4;
+}
+
+.menu-links a.active {
+  color: #4FC0C4;
+  font-weight: bold;
+  font-size: 2.3vw;
+}
+
+/* logo (mg2.png) link used by all inner pages */
+.mg-logo {
+  display: block;
+  height: auto;
+  position: absolute;
+  left: 0;
+  top: 5%;
+  width: 30%;
+  border: none;
+  pointer-events: auto;
+  z-index: 1010;
+}
+
+/* footer */
+.site-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  color: #fff;
+  z-index: 999;
+}
+
+/* ===== Mobile ===== */
+@media screen and (max-width: 768px) {
+  .menu-links {
+    align-items: center;
+    width: 100%;
+    right: -100%;
+  }
+
+  .menu-links a {
+    font-size: 5vw;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .menu-links a.active {
+    font-size: 6vw;
+  }
+
+  .mg-logo {
+    top: 6%;
+    width: 50%;
+  }
+}
+
+/* ===== Tablet ===== */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .menu-links {
+    align-items: center;
+    width: 100%;
+    right: -100%;
+  }
+
+  .menu-links a {
+    font-size: 3vw;
+    text-align: center;
+  }
+
+  .menu-links a.active {
+    font-size: 4vw;
+  }
+
+  .mg-logo {
+    top: 6%;
+    width: 50%;
+  }
+}

@@ -1,0 +1,28 @@
+/* ===== About Page ===== */
+.about-page {
+  min-height: 100vh;
+  position: relative;
+}
+
+.about {
+  position: absolute;
+  top: 15%;
+  padding: 0;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+}
+
+.about p {
+  font-size: clamp(10px, 2vw, 18px);
+  text-align: center;
+  font-family: 'Chiron Hei HK', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.7;
+  color: #fff;
+  text-decoration: none;
+  margin: 0;
+}
