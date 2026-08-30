@@ -5,23 +5,6 @@
   position: relative;
 }
 
-.activity-page table {
-  margin-top: 10%;
-  width: auto;
-  margin-left: auto;
-  margin-right: 20px;
-  border-collapse: separate;
-  border-spacing: 20px 0;
-  table-layout: fixed;
-}
-
-.activity-page td {
-  border-radius: 15px;
-  font-size: clamp(19px, 2vw, 35px);
-  padding: 10px;
-  vertical-align: top;
-}
-
 .activity-page img {
   display: block;
   width: 100%;
@@ -35,7 +18,6 @@
   margin: 0;
   font-size: clamp(12px, 2vw, 22px);
   text-align: left;
-  vertical-align: top;
   color: #fff;
 }
 
@@ -90,106 +72,118 @@
   transform: translateX(20px);
 }
 
-.activity-page .img-td {
-  width: 1200px;
-  height: 100%;
-  text-align: left;
-  vertical-align: middle;
-  overflow: hidden;
-  z-index: 1;
-  margin-left: 0;
+/* ===== Activity Card (div-based overlay) ===== */
+.activity-card {
+  position: absolute;
+  top: 60%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  width: 55%;
+  max-width: 900px;
 }
 
-.activity-page .img-td img {
-  max-width: 100%;
+/* antd Carousel wrapper */
+.activity-carousel-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.activity-carousel .slick-slide img {
+  display: block;
+  width: 100%;
   height: 500px;
   object-fit: contain;
   border-radius: 15px;
-  display: block;
   margin: 0 auto;
-  vertical-align: top;
-  margin-left: 5%;
 }
 
-.activity-page .text-bg {
+/* ===== Custom carousel arrows ===== */
+/* 隱藏 slick 原本的 ::before icon */
+.activity-carousel .slick-prev::before,
+.activity-carousel .slick-next::before {
+  display: none;
+}
+
+.activity-carousel .slick-prev,
+.activity-carousel .slick-next {
+  z-index: 10;
+  width: auto;
+  height: auto;
+  background: transparent !important;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: transparent;
   border: none;
-  width: 80%;
-  height: 190px;
-  left: 23%;
+  cursor: pointer;
+  color: #fff;
+  opacity: 0.5;
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+  padding: 0 8px;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
+  user-select: none;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.carousel-arrow:hover {
+  color: #4FC0C4;
+  transform: translateY(-50%) scale(1.2);
+  opacity: 1;
+}
+
+.carousel-arrow-prev {
+  left: 8px;
+}
+
+.carousel-arrow-next {
+  right: 8px;
+}
+
+
+/* text overlay — 與 carousel 圖片齊寬 */
+.activity-page .text-bg {
+  position: relative;
+  /* 讓左右跟 slick-slide 內圖片對齊（slick 預設無額外縮排） */
+  width: 100%;
+  box-sizing: border-box;
   background-color: rgba(30, 30, 30, 0.4);
-  vertical-align: top;
+  z-index: 3;
   overflow: auto;
   word-break: break-word;
   overflow-wrap: anywhere;
   white-space: normal;
-  margin-top: -10%;
-  position: absolute;
-  z-index: 3;
-  margin-left: 0;
+  padding: 10px 14px;
   line-height: 1.5;
   font-family: 'Chiron Hei HK', sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+  max-height: 190px;
+  border-radius: 0 0 12px 12px;
+  text-align: left;
 }
-
-.activity-page .table-container {
-  width: 95%;
-  margin-left: 5%;
-  position: fixed;
-  top: 45%;
-  left: 40%;
-  transform: translate(-50%, -50%);
-  display: table;
-  text-align: center;
-}
-
-/* per-tab slideshow */
-.slider-container {
-  position: relative;
-  width: 100%;
-}
-
-.slider-container img {
-  max-width: 100%;
-  height: 500px;
-  border-radius: 15px;
-  margin: 0;
-  display: none;
-}
-
-.slider-container img.active {
-  display: block;
-}
-
-.prev, .next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0);
-  color: #fff;
-  border: none;
-  padding: 5px 10px;
-  font-size: 1.5rem;
-  cursor: pointer;
-  border-radius: 5px;
-  user-select: none;
-  z-index: 10;
-}
-
-.prev { left: 7%; }
-.next { right: 7%; }
 
 /* ===== Mobile ===== */
 @media (max-width: 768px) {
-  .activity-page table { margin-top: 90%; }
-
-  .activity-page .img-td img {
+  .activity-card {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 85%;
+    margin: 70vh auto 0;
     max-width: 100%;
-    margin-top: 100%;
-    width: 800px;
-    height: 550px;
-    margin-left: 6%;
+  }
+
+  .activity-carousel .slick-slide img {
+    height: 300px;
+    object-fit: cover;
   }
 
   .activity-page .menu {
@@ -204,22 +198,8 @@
     margin-bottom: 10px;
   }
 
-  .activity-page .img-td {
-    width: 100% !important;
-    height: 650px;
-  }
-
   .activity-page .text-bg {
-    width: 70% !important;
-    height: 150px;
-    margin-top: -60%;
-    margin-left: 8%;
-    left: 5%;
-  }
-
-  .activity-page .table-container {
-    width: 90%;
-    margin-left: 10%;
+    max-height: 150px;
   }
 
   .activity-page .tab-content {
@@ -234,6 +214,4 @@
   .activity-page .tab-content.active {
     transform: translateX(0);
   }
-
-  .next { right: -2%; }
 }

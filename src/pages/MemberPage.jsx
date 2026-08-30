@@ -114,38 +114,28 @@ export default function MemberPage() {
             id={m.id}
             className={`tab-content${activeId === m.id ? ' active' : ''}`}
           >
-            <div className="table-container">
-              <table align="right" cellPadding="0" cellSpacing="0">
-                <tbody>
-                  <tr>
-                    <td className="img-td">
-                      {m.imgDesktop ? (
-                        <picture>
-                          <source media="(max-width: 768px)" srcSet={m.imgMobile} />
-                          <img src={m.imgDesktop} alt={m.name} />
-                        </picture>
-                      ) : (
-                        <img src={m.img} alt={m.name} />
-                      )}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="name-text"><p>{m.name}</p></td>
-                  </tr>
-                  <tr>
-                    <td className="text-bg" style={{ textAlign: 'left' }}>
-                      <p>{m.desc.split('\n').map((line, i) => (
-                        <span key={i}>{line}<br /></span>
-                      ))}</p>
-                      {m.links.map((l, i) => (
-                        <a key={i} href={l.href} className="member-link" target="_blank" rel="noreferrer">
-                          {l.text}
-                        </a>
-                      ))}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            <div className="member-card">
+              <div className="member-img-wrap">
+                {m.imgDesktop ? (
+                  <picture>
+                    <source media="(max-width: 768px)" srcSet={m.imgMobile} />
+                    <img src={m.imgDesktop} alt={m.name} />
+                  </picture>
+                ) : (
+                  <img src={m.img} alt={m.name} />
+                )}
+              </div>
+              <div className="name-text"><p>{m.name}</p></div>
+              <div className="text-bg">
+                <p>{m.desc.split('\n').map((line, i) => (
+                  <span key={i}>{line}<br /></span>
+                ))}</p>
+                {m.links.map((l, i) => (
+                  <a key={i} href={l.href} className="member-link" target="_blank" rel="noreferrer">
+                    {l.text}
+                  </a>
+                ))}
+              </div>
             </div>
           </section>
         ))}
