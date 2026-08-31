@@ -4,6 +4,27 @@
   position: relative;
 }
 
+/* 兩大全版面段落 */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.news-section {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0;
+  box-sizing: border-box;
+  gap: 10px;
+}
+
 /* hero images */
 .bg1 {
   position: relative;
@@ -15,19 +36,25 @@
   z-index: 1;
 }
 
+.reflection-container {
+  width: 100%;
+  height: 60vh;
+  margin-top: -5px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.1) 15%, rgba(0, 0, 0, 0) 20%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.1) 15%, rgba(0, 0, 0, 0) 20%);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+}
+
 .reflection {
   display: block;
   width: 100%;
+  height: 100%;
   transform: scaleY(-1);
-  opacity: 0.5;
-  height: 40vh;
-  margin-top: -5px;
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1));
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-size: 100% 100%;
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1));
-  mask-repeat: no-repeat;
-  mask-size: 100% 100%;
+  opacity: 1.0;
 }
 
 .bg2 {
@@ -51,7 +78,7 @@
   margin: 20px auto;
   display: block;
   z-index: 900;
-  margin-top: -40%;
+  margin-top: -50%;
   transition: opacity 0.5s ease;
   pointer-events: auto;
 }
@@ -75,13 +102,13 @@
 /* NEWS heading */
 .news {
   position: relative;
-  margin-top: 10%;
+  margin-top: 12%;
   left: 50%;
   transform: translateX(-50%);
   color: #fff;
   text-align: center;
   width: 100%;
-  z-index: 2001;
+  z-index: 1;
 }
 
 .news p {
@@ -103,8 +130,13 @@
   margin: 10px;
   font-size: clamp(5px, 2vw, 35px);
   padding: 10px;
-  vertical-align: top;
+  vertical-align: middle;
   background-color: rgba(225, 225, 225, 0.4);
+}
+
+.msg td {
+  vertical-align: middle;
+  text-align: center;
 }
 
 .msg a svg {
@@ -120,55 +152,77 @@
   position: fixed;
   top: 80%;
   transform: translateY(-50%);
-  z-index: 2000;
+  z-index: 800;
 }
 
 /* Instagram antd Carousel */
+.ig-carousel-outer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 0;
+  padding: 0;
+  box-sizing: border-box;
+  margin-top: 5%;
+}
+
 .ig-carousel-wrap {
   position: relative;
-  width: 60%;
-  margin: 5% auto 0;
+  width: 400px;
+  flex-shrink: 0;
   z-index: 0;
+}
+
+.ig-carousel {
+  width: 100%;
+}
+
+/* news section footer */
+.news-footer {
+  width: 100%;
+  text-align: center;
+  padding: 0 0;
+  font-size: 14px;
+  color: #fff;
+  font-family: 'Michroma', 'Noto Sans TC', sans-serif;
+  z-index: 10;
 }
 
 .ig-slide {
   display: flex !important;
-  justify-content: center;
-  align-items: center;
-  padding: 20px 0;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100%;
+  padding: 10px 0;
 }
 
-.ig-carousel .carousel-arrow {
-  z-index: 10;
+.ig-slide blockquote.instagram-media {
+  margin: 0 auto !important;
 }
 
 .carousel-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
+  flex-shrink: 0;
   background: transparent;
   border: none;
   cursor: pointer;
   color: #fff;
   opacity: 0.5;
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 900;
   line-height: 1;
-  padding: 0 8px;
-  text-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
+  padding: 8px;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
   user-select: none;
-  transition: color 0.2s, transform 0.2s;
+  transition: color 0.2s, transform 0.2s, opacity 0.2s;
 }
 
 .carousel-arrow:hover {
   color: #4FC0C4;
-  transform: translateY(-50%) scale(1.2);
+  transform: scale(1.2);
   opacity: 1;
 }
-
-.carousel-arrow-prev { left: 8px; }
-.carousel-arrow-next { right: 8px; }
 
 /* ===== Mobile ===== */
 @media screen and (max-width: 768px) {
@@ -177,9 +231,14 @@
     margin-top: -15%;
   }
 
-  .bg2 { margin-top: 10%; }
+  .bg2 {
+    margin-top: 10%;
+  }
 
-  .news { z-index: 1; margin-top: 30%; }
+  .news {
+    z-index: 1;
+    margin-top: 30%;
+  }
 
   .slider-container {
     margin-top: 15%;
@@ -217,11 +276,22 @@
     top: 4%;
   }
 
-  .msg td { text-align: center; padding: 5px; }
+  .msg td {
+    text-align: center;
+    padding: 5px;
+  }
 
   .msg a svg {
     width: 60%;
     height: 60%;
     text-align: center;
+  }
+
+  .carousel-arrow-prev {
+    left: -30px;
+  }
+
+  .carousel-arrow-next {
+    right: -30px;
   }
 }
