@@ -17,7 +17,7 @@
 .about p {
   font-size: clamp(10px, 2vw, 18px);
   text-align: center;
-  font-family: 'Chiron Hei HK', sans-serif;
+  font-family: 'Michroma', 'Noto Sans TC', sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;

@@ -1,16 +1,25 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import Navbar from '../components/Navbar'
+import { Carousel } from 'antd'
+import Menu from '../components/Menu'
+import instagramPosts from '../json/instagramPosts.json'
 import './HomePage.css'
 
-// Instagram embed URLs
-const instagramPosts = [
-  'https://www.instagram.com/p/DSrwaCZE3cw/?utm_source=ig_embed&amp;utm_campaign=loading',
-  'https://www.instagram.com/p/DQWXaXCk1PQ/?utm_source=ig_embed&amp;utm_campaign=loading',
-  'https://www.instagram.com/p/DPOKxcckwW6/?utm_source=ig_embed&amp;utm_campaign=loading',
-  'https://www.instagram.com/p/DPtBQETE0zg/?utm_source=ig_embed&amp;utm_campaign=loading',
-  'https://www.instagram.com/p/DOBT4PlEy9x/?utm_source=ig_embed&amp;utm_campaign=loading',
-]
+function PrevArrow({ onClick }) {
+  return (
+    <button className="carousel-arrow carousel-arrow-prev" onClick={onClick} aria-label="上一則">
+      &#10094;
+    </button>
+  )
+}
+
+function NextArrow({ onClick }) {
+  return (
+    <button className="carousel-arrow carousel-arrow-next" onClick={onClick} aria-label="下一則">
+      &#10095;
+    </button>
+  )
+}
 
 function InstagramEmbed({ permalink }) {
   return (
@@ -23,7 +32,7 @@ function InstagramEmbed({ permalink }) {
         border: 0,
         borderRadius: '3px',
         boxShadow: '0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15)',
-        margin: '1px',
+        margin: '1px auto',
         maxWidth: '540px',
         minWidth: '326px',
         padding: 0,
@@ -51,64 +60,7 @@ function InstagramEmbed({ permalink }) {
 }
 
 export default function HomePage() {
-  const currentIndex = useRef(0)
-  const sliderRef = useRef(null)
-  const autoSlideRef = useRef(null)
   const mgRef = useRef(null)
-
-  const total = instagramPosts.length
-
-  function showSlide(index) {
-    const slider = sliderRef.current
-    if (!slider) return
-    slider.style.transition = 'transform 1s ease-in-out'
-    slider.style.transform = `translateX(-${index * 100}%)`
-
-    if (index >= total) {
-      setTimeout(() => {
-        slider.style.transition = 'none'
-        currentIndex.current = 0
-        slider.style.transform = 'translateX(0%)'
-      }, 1000)
-    }
-
-    if (window.instgrm) window.instgrm.Embeds.process()
-  }
-
-  function startAutoSlide() {
-    autoSlideRef.current = setInterval(() => {
-      currentIndex.current++
-      showSlide(currentIndex.current)
-      if (currentIndex.current === total - 1) {
-        setTimeout(() => {
-          const slider = sliderRef.current
-          if (slider) {
-            slider.style.transition = 'none'
-            currentIndex.current = 0
-            slider.style.transform = 'translateX(0%)'
-          }
-        }, 1000)
-      }
-    }, 5000)
-  }
-
-  function stopAutoSlide() {
-    clearInterval(autoSlideRef.current)
-  }
-
-  function nextSlide() {
-    stopAutoSlide()
-    currentIndex.current = (currentIndex.current + 1) % total
-    showSlide(currentIndex.current)
-    startAutoSlide()
-  }
-
-  function prevSlide() {
-    stopAutoSlide()
-    currentIndex.current = (currentIndex.current - 1 + total) % total
-    showSlide(currentIndex.current)
-    startAutoSlide()
-  }
 
   useEffect(() => {
     // Load Instagram embed script
@@ -122,31 +74,22 @@ export default function HomePage() {
       window.instgrm.Embeds.process()
     }
 
-    startAutoSlide()
-
     // Scroll-driven logo animation
     const mg = mgRef.current
     function handleScroll() {
       const scrollY = window.scrollY
-      const maxScroll = 800
-      const newHeight = 20 + 80 * Math.min(scrollY / maxScroll, 1)
       if (mg) {
-        mg.style.height = newHeight + 'vh'
         if (scrollY < 800) {
-          mg.style.opacity = 1
+          mg.style.opacity = '1'
         } else if (scrollY < 1200) {
-          mg.style.opacity = 1 - (scrollY - 600) / 600
+          mg.style.opacity = String(1 - (scrollY - 600) / 600)
         } else {
-          mg.style.opacity = 0
+          mg.style.opacity = '0'
         }
       }
     }
     window.addEventListener('scroll', handleScroll)
-
-    return () => {
-      stopAutoSlide()
-      window.removeEventListener('scroll', handleScroll)
-    }
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const socialLinks = [
@@ -191,7 +134,7 @@ export default function HomePage() {
         </Link>
       </div>
 
-      <Navbar />
+      <Menu />
 
       {/* social links */}
       <div className="msg-table">
@@ -214,19 +157,24 @@ export default function HomePage() {
         <p>NEWS</p>
       </div>
 
-      {/* Instagram slider */}
-      <div className="slider-wrapper">
-        <div className="slider-container">
-          <div className="slider" ref={sliderRef}>
-            {instagramPosts.map((post, i) => (
-              <div className="slide" key={i}>
-                <InstagramEmbed permalink={post} />
-              </div>
-            ))}
-          </div>
-        </div>
-        <button className="slider-btn prev" onClick={prevSlide}>&#10094;</button>
-        <button className="slider-btn next" onClick={nextSlide}>&#10095;</button>
+      {/* Instagram Carousel */}
+      <div className="ig-carousel-wrap">
+        <Carousel
+          arrows
+          infinite
+          autoplay
+          autoplaySpeed={5000}
+          className="ig-carousel"
+          prevArrow={<PrevArrow />}
+          nextArrow={<NextArrow />}
+          afterChange={() => { if (window.instgrm) window.instgrm.Embeds.process() }}
+        >
+          {[...instagramPosts].reverse().map((post, i) => (
+            <div key={i} className="ig-slide">
+              <InstagramEmbed permalink={post} />
+            </div>
+          ))}
+        </Carousel>
       </div>
 
       <br /><br />

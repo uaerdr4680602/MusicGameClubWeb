@@ -59,7 +59,7 @@
   font-size: 1.5vw;
   transition: all 0.3s ease;
   margin-bottom: 10px;
-  font-family: 'Zen Antique', serif;
+  font-family: 'Michroma', 'Noto Sans TC', sans-serif;
   font-weight: 400;
   font-style: normal;
   cursor: pointer;
@@ -160,7 +160,7 @@
   white-space: normal;
   padding: 10px 14px;
   line-height: 1.5;
-  font-family: 'Chiron Hei HK', sans-serif;
+  font-family: 'Michroma', 'Noto Sans TC', sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;

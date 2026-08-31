@@ -1,7 +1,11 @@
 /* ===== Global Reset & Base ===== */
-@import url('https://fonts.googleapis.com/css2?family=Michroma&family=Zen+Antique&family=Chiron+Hei+HK:ital,wght@0,200..900;1,200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap');
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -15,7 +19,7 @@ html {
 
 body {
   margin: 0;
-  font-family: 'Michroma', sans-serif;
+  font-family: 'Michroma', 'Noto Sans TC', sans-serif;
   background: url('/img/bg.jpg') no-repeat center center fixed;
   background-color: #000;
   background-size: cover;

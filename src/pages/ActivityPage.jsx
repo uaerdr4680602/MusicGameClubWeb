@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Carousel } from 'antd'
-import Navbar from '../components/Navbar'
+import Menu from '../components/Menu'
 import activities from '../json/activities.json'
 import './ActivityPage.css'
 
@@ -32,7 +32,7 @@ export default function ActivityPage() {
         </Link>
       </div>
 
-      <Navbar />
+      <Menu />
 
       <div className="menu">
         {activities.map(a => (

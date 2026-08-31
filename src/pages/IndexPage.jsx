@@ -30,10 +30,10 @@ export default function IndexPage() {
       }
 
       const lineEl = document.getElementById(`line-${index}`)
-      if (lineEl) lineEl.style.opacity = 1
+      if (lineEl) lineEl.style.opacity = '1'
 
       const t1 = setTimeout(() => {
-        if (lineEl) lineEl.style.opacity = 0
+        if (lineEl) lineEl.style.opacity = '0'
         if (index === lines.length - 1) {
           const preloader = document.getElementById('preloader')
           if (preloader) preloader.classList.add('white-bg')

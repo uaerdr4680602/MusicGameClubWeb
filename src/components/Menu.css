@@ -1,0 +1,142 @@
+/* ===== Menu Styles ===== */
+.ant-drawer-content {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.ant-drawer-body {
+  background-color: transparent !important;
+}
+
+.top {
+  font-size: clamp(14px, 2vw, 30px);
+  height: 30px;
+  width: 100%;
+  position: fixed;
+  top: 5%;
+  right: 10px;
+  opacity: 1;
+  padding: 10px;
+  z-index: 2001;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* hamburger / close button */
+.menu-toggle {
+  font-size: clamp(20px, 3vw, 80px);
+  margin-right: 3%;
+  background: none;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  z-index: 2002;
+}
+
+/* clickable full-area overlay to close menu */
+.menu-overlay-area {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* links container — stops click from bubbling to overlay */
+.menu-links-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: default;
+}
+
+/* fullscreen overlay title */
+.menu-title {
+  font-family: 'Michroma', sans-serif;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: clamp(12px, 1.2vw, 20px);
+  letter-spacing: 6px;
+  margin-bottom: 40px;
+}
+
+/* nav links inside fullscreen Drawer */
+.mycount {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-size: clamp(28px, 5vw, 72px);
+  padding: 8px 0;
+  display: block;
+  text-align: center;
+  font-family: 'Michroma', 'Noto Sans TC', sans-serif;
+  letter-spacing: 4px;
+  transition: color 0.2s ease, letter-spacing 0.2s ease;
+}
+
+.mycount:hover {
+  color: #4FC0C4;
+  letter-spacing: 8px;
+}
+
+.mycount.active {
+  color: #4FC0C4;
+  font-weight: bold;
+}
+
+/* logo (mg2.png) link used by all inner pages */
+.mg-logo {
+  display: block;
+  height: auto;
+  position: absolute;
+  left: 0;
+  top: 5%;
+  width: 30%;
+  border: none;
+  pointer-events: auto;
+  z-index: 1010;
+}
+
+/* footer */
+.site-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  color: #fff;
+  z-index: 999;
+}
+
+/* ===== Mobile ===== */
+@media screen and (max-width: 768px) {
+  .mycount {
+    font-size: clamp(24px, 8vw, 48px);
+    letter-spacing: 2px;
+  }
+
+  .mycount:hover {
+    letter-spacing: 4px;
+  }
+
+  .mg-logo {
+    top: 6%;
+    width: 50%;
+  }
+}
+
+/* ===== Tablet ===== */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .mycount {
+    font-size: clamp(28px, 6vw, 60px);
+  }
+
+  .mg-logo {
+    top: 6%;
+    width: 50%;
+  }
+}

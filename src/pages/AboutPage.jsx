@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import Navbar from '../components/Navbar'
+import Menu from '../components/Menu'
 import './AboutPage.css'
 
 export default function AboutPage() {
@@ -11,7 +11,7 @@ export default function AboutPage() {
         </Link>
       </div>
 
-      <Navbar />
+      <Menu />
 
       <div className="about">
         <p>

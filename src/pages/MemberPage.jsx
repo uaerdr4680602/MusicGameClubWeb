@@ -1,11 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import Navbar from '../components/Navbar'
+import Menu from '../components/Menu'
 import './MemberPage.css'
-
-function showTab(id, setActive) {
-  setActive(id)
-}
 
 const members = [
   {
@@ -83,8 +79,6 @@ const members = [
 export default function MemberPage() {
   const [activeId, setActiveId] = useState('leader')
 
-  const activeMember = members.find(m => m.id === activeId)
-
   return (
     <div className="member-page">
       <div>
@@ -93,7 +87,7 @@ export default function MemberPage() {
         </Link>
       </div>
 
-      <Navbar />
+      <Menu />
 
       <main>
         <div className="menu">

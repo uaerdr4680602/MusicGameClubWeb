@@ -3,8 +3,10 @@
 /* preloader overlay */
 .preloader {
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   background: black;
   display: flex;
   justify-content: center;
@@ -21,7 +23,7 @@
   position: absolute;
   transition: opacity 1s ease;
   text-align: center;
-  font-family: 'Zen Antique', serif;
+  font-family: 'Noto Serif TC', serif;
 }
 
 .preloader.white-bg {
@@ -75,7 +77,7 @@
   width: 73%;
   height: auto;
   position: absolute;
-  right: 0%;
+  right: 0;
   top: -12%;
 }
 
@@ -91,9 +93,17 @@
 }
 
 @keyframes float {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-50px); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-50px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .float-girl {
@@ -120,7 +130,7 @@
   border: none;
   border-radius: 8px;
   font-size: 3vw;
-  font-family: 'Zen Antique', serif;
+  font-family: 'Michroma', 'Noto Sans TC', sans-serif;
   font-weight: 400;
   cursor: pointer;
   transition: color 0.2s ease;
@@ -136,8 +146,18 @@
 
 /* ===== Mobile ===== */
 @media screen and (max-width: 768px) {
-  .left-img  { width: 75%; top: 30%; left: 0; }
-  .right-img { width: 73%; top: 25%; right: 0; }
+  .left-img {
+    width: 75%;
+    top: 30%;
+    left: 0;
+  }
+
+  .right-img {
+    width: 73%;
+    top: 25%;
+    right: 0;
+  }
+
   .center-img {
     width: 100%;
     bottom: 35%;
@@ -145,7 +165,9 @@
     mix-blend-mode: normal;
   }
 
-  .loading-text { font-size: 3vw; }
+  .loading-text {
+    font-size: 3vw;
+  }
 
   .enter-btn {
     bottom: 30%;
@@ -160,8 +182,18 @@
 
 /* ===== Tablet ===== */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-  .left-img  { width: 75%; top: 30%; left: 0; }
-  .right-img { width: 73%; top: 25%; right: 0; }
+  .left-img {
+    width: 75%;
+    top: 30%;
+    left: 0;
+  }
+
+  .right-img {
+    width: 73%;
+    top: 25%;
+    right: 0;
+  }
+
   .center-img {
     width: 100%;
     bottom: 20%;
@@ -169,7 +201,9 @@
     mix-blend-mode: normal;
   }
 
-  .loading-text { font-size: 2vw; }
+  .loading-text {
+    font-size: 2vw;
+  }
 
   .enter-btn {
     bottom: 20%;

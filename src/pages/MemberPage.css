@@ -60,7 +60,7 @@
   font-size: 1.5vw;
   transition: all 0.3s ease;
   margin-bottom: 10px;
-  font-family: 'Zen Antique', serif;
+  font-family: 'Michroma', sans-serif;
   font-weight: 400;
   font-style: normal;
   cursor: pointer;
@@ -105,7 +105,7 @@
   width: 22%;
   background-color: rgba(38, 135, 133, 0.6);
   z-index: 3;
-  font-family: 'Chiron Hei HK', sans-serif;
+  font-family: 'Michroma', 'Noto Sans TC', sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
@@ -132,7 +132,7 @@
   text-align: left;
   vertical-align: middle;
   margin: 0;
-  font-family: 'Zen Antique', serif;
+  font-family: 'Michroma', 'Noto Sans TC', sans-serif;
   font-weight: 400;
   font-style: normal;
   color: #fff;
@@ -152,7 +152,7 @@
   white-space: normal;
   padding: 10px;
   line-height: 1.5;
-  font-family: 'Chiron Hei HK', sans-serif;
+  font-family: 'Michroma', 'Noto Sans TC', sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
@@ -162,7 +162,7 @@
 
 .member-link {
   font-size: clamp(12px, 2vw, 20px);
-  font-family: 'Zen Antique', sans-serif;
+  font-family: 'Michroma', 'Noto Sans TC', sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
   color: #4FC0C4;

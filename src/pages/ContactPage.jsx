@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import Navbar from '../components/Navbar'
+import Menu from '../components/Menu'
 import './ContactPage.css'
 
 const socialLinks = [
@@ -43,7 +43,7 @@ export default function ContactPage() {
         <img src="/img/wolf.png" className="right-img" alt="" />
       </div>
 
-      <Navbar />
+      <Menu />
 
       <div className="msg-table">
         <table cellPadding="0" cellSpacing="0" className="msg">
