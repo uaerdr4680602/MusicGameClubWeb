@@ -2,6 +2,7 @@
   {
     "id": "leader",
     "label": "社長",
+    "enRole": "PRESIDENT",
     "img": "/img/wolf.png",
     "name": "保留",
     "desc": "新媒系大四。\n我負責畫獸圖。",
@@ -10,6 +11,7 @@
   {
     "id": "member1",
     "label": "副社長",
+    "enRole": "VICE PRESIDENT",
     "img": "/img/gim.png",
     "name": "吉米",
     "desc": "新媒系大四。\n負責支援社長的各種突發異想。",
@@ -27,6 +29,7 @@
   {
     "id": "member2",
     "label": "美宣",
+    "enRole": "ART DESIGNER",
     "img": "/img/177.png",
     "name": "177",
     "desc": "新媒系大四。\n我負責畫圖。",
@@ -35,6 +38,7 @@
   {
     "id": "member3",
     "label": "網管",
+    "enRole": "WEBMASTER",
     "img": "/img/19359.png",
     "name": "百齋",
     "desc": "新媒系大四。\n我負責修網頁。",
@@ -43,6 +47,7 @@
   {
     "id": "member4",
     "label": "公關",
+    "enRole": "PUBLIC RELATIONS",
     "img": "/img/shiyui.png",
     "name": "星野",
     "desc": "大家好我是新媒二的新人，你們都可以叫我星野。\n我是個只會擺爛的攝影兼剪輯師，現在主音游是中二節奏，有打過Phigros、Arcaea、PJSK。\n一個小鳥游星野推。\n請多多指教",
@@ -51,6 +56,7 @@
   {
     "id": "member5",
     "label": "活動",
+    "enRole": "EVENT DIRECTOR",
     "img": "/img/nicky.png",
     "name": "nicky",
     "desc": "MIT大二小新肝。\n比較重要一點的興趣：Double Bass/編曲/舞蹈/游泳/美妝。\n兩點興趣：活網/Vocaloid/KPOP/Game/Vtuber/Anime。\n最近常玩遊戲：垃圾第五人格/Among us/Minecraft/Lethal Company/Phasmophobia/VRChat。\n音遊之前常玩osu 很久打一次pjsk(日服) 很久打一次mai。\n主要是錢都花在其他地方沒錢打ㄌ～\n\n推：懶貓子Rumi/Miku(其實是DD)。\n喜歡的音樂家：YUC'e/Snail's House/EmoCosine/Mitsukiyo\n愛聽Future Bass/Kawaii Bass。\n基本上都是打osu認識的音樂家。\n可以找我玩遊戲！不過我線上線下都是E，可能會有點嗨。\n喜歡的東西很多，還在擴展中。",
@@ -64,6 +70,7 @@
   {
     "id": "member6",
     "label": "總務",
+    "enRole": "TREASURER",
     "img": "/img/gim.png",
     "name": "吉米 again",
     "desc": "新媒系大四。\n負責支援社長的各種突發異想。",
@@ -72,6 +79,7 @@
   {
     "id": "member7",
     "label": "教學",
+    "enRole": "INSTRUCTOR",
     "imgDesktop": "/img/teach.png",
     "imgMobile": "/img/teach-2.png",
     "name": "保留/吉米",

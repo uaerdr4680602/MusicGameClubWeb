@@ -19,18 +19,12 @@ export default function ContactPage() {
 
       <Menu />
 
-      <div className="msg-table">
-        <table cellPadding="0" cellSpacing="0" className="msg">
-          <tbody>
-            {socialLinks.map((s, i) => (
-              <tr key={i}>
-                <td>
-                  <a href={s.href} target="_blank" rel="noreferrer">{s.svg}</a>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="contact-social-links">
+        {socialLinks.map((s, i) => (
+          <a key={i} href={s.href} target="_blank" rel="noreferrer">
+            {s.svg}
+          </a>
+        ))}
       </div>
 
       <footer className="site-footer">© TNUA MUSIC GAME CLUB 2nd</footer>

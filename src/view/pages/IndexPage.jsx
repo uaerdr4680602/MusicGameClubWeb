@@ -16,6 +16,7 @@ export default function IndexPage() {
   const [visible, setVisible] = useState(false)
   const [preloaderHidden, setPreloaderHidden] = useState(false)
   const [transitioning, setTransitioning] = useState(false)
+  const [started, setStarted] = useState(false)
   const skipped = useRef(false)
   const playerRef = useRef(null)
   const iframeRef = useRef(null)
@@ -26,21 +27,20 @@ export default function IndexPage() {
       playerRef.current = new window['YT']['Player']('yt-bg-player', {
         videoId: VIDEO_ID,
         playerVars: {
-          autoplay: 1,
-          mute: 1,
+          autoplay: 0,
           controls: 0,
           disablekb: 1,
           modestbranding: 1,
           rel: 0,
-          start: 4,
+          start: 3.7,
         },
         events: {
-          'onReady': (e) => {
-            e.target['playVideo']()
+          'onReady': () => {
+            // do not play on ready, wait for click
           },
           'onStateChange': (e) => {
             if (e.data === 0) {
-              e.target['seekTo'](4, true)
+              e.target['seekTo'](3.7, true)
               e.target['playVideo']()
             }
           },
@@ -69,34 +69,24 @@ export default function IndexPage() {
     }
   }, [])
 
-  // 互動播音樂
-  useEffect(() => {
-    function handleInteraction() {
-      if (playerRef.current && playerRef.current['unMute']) {
-        try {
-          playerRef.current['unMute']()
-          playerRef.current['setVolume'](50)
-          if (playerRef.current['getPlayerState'] && playerRef.current['getPlayerState']() !== 1) {
-            playerRef.current['playVideo']()
-          }
-        } catch {
-          // ignore
+  function handleStart() {
+    if (playerRef.current && playerRef.current['unMute']) {
+      try {
+        playerRef.current['unMute']()
+        playerRef.current['setVolume'](50)
+        playerRef.current['seekTo'](3.7, true)
+        if (playerRef.current['getPlayerState'] && playerRef.current['getPlayerState']() !== 1) {
+          playerRef.current['playVideo']()
         }
+      } catch {
+        // ignore
       }
     }
-
-    window.addEventListener('click', handleInteraction, { once: true })
-    window.addEventListener('touchstart', handleInteraction, { once: true })
-    window.addEventListener('keydown', handleInteraction, { once: true })
-
-    return () => {
-      window.removeEventListener('click', handleInteraction)
-      window.removeEventListener('touchstart', handleInteraction)
-      window.removeEventListener('keydown', handleInteraction)
-    }
-  }, [])
+    setStarted(true)
+  }
 
   useEffect(() => {
+    if (!started) return
     let index = 0
     let timeouts = []
 
@@ -128,10 +118,13 @@ export default function IndexPage() {
       timeouts.push(t1)
     }
 
-    showLine()
+    const initialDelay = setTimeout(() => {
+      showLine()
+    }, 800)
+    timeouts.push(initialDelay)
 
     return () => timeouts.forEach(clearTimeout)
-  }, [])
+  }, [started])
 
   function endPreloader() {
     skipped.current = true
@@ -162,12 +155,20 @@ export default function IndexPage() {
 
       {!preloaderHidden && (
         <div id="preloader" className="preloader">
-          {lines.map((text, i) => (
-            <div key={i} className="loading-text" id={`line-${i}`}>
-              {text}
-            </div>
-          ))}
-          <button className="skip-btn" onClick={endPreloader}>SKIP</button>
+          {!started ? (
+            <button className="tap-start-btn" onClick={handleStart}>
+              TAP TO START
+            </button>
+          ) : (
+            <>
+              {lines.map((text, i) => (
+                <div key={i} className="loading-text" id={`line-${i}`}>
+                  {text}
+                </div>
+              ))}
+              <button className="skip-btn" onClick={endPreloader}>SKIP</button>
+            </>
+          )}
         </div>
       )}
 

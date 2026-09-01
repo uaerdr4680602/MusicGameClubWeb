@@ -1,4 +1,4 @@
-/* ===== Index (Landing) Page ===== */
+/* ===== Landing Page ===== */
 
 /* page transition overlay */
 .transition-overlay {
@@ -49,6 +49,48 @@
 .preloader.hidden {
   opacity: 0;
   pointer-events: none;
+}
+
+/* TAP TO START button */
+.tap-start-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 999px;
+
+  padding: 15px 40px;
+  font-family: 'Michroma', 'Noto Sans TC', sans-serif;
+  font-size: clamp(16px, 2vw, 24px);
+  cursor: pointer;
+  animation: tapBreath 2s infinite ease-in-out;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.tap-start-btn:hover {
+  background-color: #fff;
+  color: #4FC0C4;
+  font-size: clamp(18px, 2vw, 26px);
+}
+
+@keyframes tapBreath {
+  0% {
+    opacity: 0.8;
+    box-shadow: 0 0 10px rgba(79, 192, 196, 0.2);
+  }
+
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(79, 192, 196, 0.6);
+  }
+
+  100% {
+    opacity: 0.8;
+    box-shadow: 0 0 10px rgba(79, 192, 196, 0.2);
+  }
 }
 
 .skip-btn {
