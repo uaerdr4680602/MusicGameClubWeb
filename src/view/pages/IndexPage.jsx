@@ -27,6 +27,7 @@ export default function IndexPage() {
         videoId: VIDEO_ID,
         playerVars: {
           autoplay: 1,
+          mute: 1,
           controls: 0,
           disablekb: 1,
           modestbranding: 1,
@@ -35,8 +36,6 @@ export default function IndexPage() {
         },
         events: {
           'onReady': (e) => {
-            e.target['setVolume'](50)
-            e.target['seekTo'](4, true)
             e.target['playVideo']()
           },
           'onStateChange': (e) => {
@@ -67,6 +66,33 @@ export default function IndexPage() {
         try { playerRef.current.destroy() } catch { /* ignore */ }
         playerRef.current = null
       }
+    }
+  }, [])
+
+  // 互動播音樂
+  useEffect(() => {
+    function handleInteraction() {
+      if (playerRef.current && playerRef.current['unMute']) {
+        try {
+          playerRef.current['unMute']()
+          playerRef.current['setVolume'](50)
+          if (playerRef.current['getPlayerState'] && playerRef.current['getPlayerState']() !== 1) {
+            playerRef.current['playVideo']()
+          }
+        } catch {
+          // ignore
+        }
+      }
+    }
+
+    window.addEventListener('click', handleInteraction, { once: true })
+    window.addEventListener('touchstart', handleInteraction, { once: true })
+    window.addEventListener('keydown', handleInteraction, { once: true })
+
+    return () => {
+      window.removeEventListener('click', handleInteraction)
+      window.removeEventListener('touchstart', handleInteraction)
+      window.removeEventListener('keydown', handleInteraction)
     }
   }, [])
 
