@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import Menu from '../components/Menu'
+import Menu from '../menu/Menu'
 import './MemberPage.css'
 
-import members from '../json/members.json'
+import members from '../../json/members.json'
 
 export default function MemberPage() {
   const [activeId, setActiveId] = useState('leader')
@@ -39,10 +39,10 @@ export default function MemberPage() {
           >
             <div className="member-card">
               <div className="member-img-wrap">
-                {m.imgDesktop ? (
+                {m['imgDesktop'] ? (
                   <picture>
-                    <source media="(max-width: 768px)" srcSet={m.imgMobile} />
-                    <img src={m.imgDesktop} alt={m.name} />
+                    <source media="(max-width: 768px)" srcSet={m['imgMobile']} />
+                    <img src={m['imgDesktop']} alt={m.name} />
                   </picture>
                 ) : (
                   <img src={m.img} alt={m.name} />

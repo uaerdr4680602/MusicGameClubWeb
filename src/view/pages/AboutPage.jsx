@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import Menu from '../components/Menu'
+import Menu from '../menu/Menu'
 import './AboutPage.css'
 
 export default function AboutPage() {

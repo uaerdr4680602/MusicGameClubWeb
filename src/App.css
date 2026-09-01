@@ -1,0 +1,59 @@
+/* Global Shared Styles */
+
+/* Hide default slick arrows and background */
+.ant-carousel .slick-prev::before,
+.ant-carousel .slick-next::before {
+  display: none !important;
+}
+
+.ant-carousel .slick-prev,
+.ant-carousel .slick-next {
+  background: transparent !important;
+}
+.ant-carousel .carousel-arrow,
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  opacity: 0.5;
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+  padding: 0 8px;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
+  user-select: none;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.ant-carousel .carousel-arrow:hover,
+.carousel-arrow:hover {
+  color: #4FC0C4;
+  transform: translateY(-50%) scale(1.2);
+  opacity: 1;
+}
+
+/* ===== Mobile ===== */
+@media screen and (max-width: 768px) {
+  .ant-carousel .carousel-arrow,
+  .carousel-arrow {
+    padding: 2px;
+    font-size: 1.6rem;
+  }
+
+  .ant-carousel .slick-prev.carousel-arrow-prev,
+  .ant-carousel .carousel-arrow-prev,
+  .carousel-arrow-prev {
+    left: -10px !important;
+  }
+
+  .ant-carousel .slick-next.carousel-arrow-next,
+  .ant-carousel .carousel-arrow-next,
+  .carousel-arrow-next {
+    right: -10px !important;
+  }
+}

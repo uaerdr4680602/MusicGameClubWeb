@@ -20,10 +20,13 @@ const drawerStyles = {
   wrapper: {
     background: 'transparent',
     boxShadow: 'none',
+    height: '100dvh',
+    pointerEvents: 'none',
   },
-  content: {
+  section: {
     background: 'transparent',
     boxShadow: 'none',
+    pointerEvents: 'none',
   },
   header: {
     display: 'none',
@@ -65,34 +68,29 @@ export default function Menu() {
       >
         <Drawer
           placement="top"
-          height="100vh"
           open={open}
           onClose={() => setOpen(false)}
           styles={drawerStyles}
           closable={false}
-          maskClosable={true}
-          rootStyle={{ zIndex: 2000 }}
+          zIndex={2000}
         >
-        <div
-          className="menu-overlay-area"
-          onClick={() => setOpen(false)}
-        >
-          <div
-            className="menu-links-container"
-            onClick={e => e.stopPropagation()}
-          >
-            {links.map(l => (
-              <Link
-                key={l.path}
-                to={l.path}
-                className={`mycount${location.pathname === l.path ? ' active' : ''}`}
-                onClick={() => setOpen(false)}
-              >
-                {l.label}
-              </Link>
-            ))}
+          <div className="menu-overlay-area">
+            <div
+              className="menu-links-container"
+              style={{ pointerEvents: 'auto' }}
+            >
+              {links.map(l => (
+                <Link
+                  key={l.path}
+                  to={l.path}
+                  className={`mycount${location.pathname === l.path ? ' active' : ''}`}
+                  onClick={() => setOpen(false)}
+                >
+                  {l.label}
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
         </Drawer>
       </ConfigProvider>
     </div>

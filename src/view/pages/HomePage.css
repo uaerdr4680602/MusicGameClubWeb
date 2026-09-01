@@ -4,6 +4,44 @@
   position: relative;
 }
 
+/* Full screen loader */
+.home-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  transition: opacity 0.5s ease;
+}
+
+.home-loader.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.water-logo-single {
+  width: 60vw;
+  max-width: 600px;
+  object-fit: contain;
+  clip-path: inset(100% 0 0 0);
+  animation: fillWater 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes fillWater {
+  0% {
+    clip-path: inset(100% 0 0 0);
+  }
+
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
 /* 兩大全版面段落 */
 .hero-section {
   position: relative;
@@ -75,7 +113,6 @@
   transform: translateX(-50%);
   width: 100%;
   height: auto;
-  margin: 20px auto;
   display: block;
   z-index: 900;
   margin-top: -50%;
@@ -83,21 +120,6 @@
   pointer-events: auto;
 }
 
-/* top nav */
-.top {
-  font-size: clamp(14px, 2vw, 30px);
-  height: 30px;
-  width: 100%;
-  position: fixed;
-  top: 5%;
-  right: 10px;
-  opacity: 1;
-  padding: 10px;
-  z-index: 2001;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
 
 /* NEWS heading */
 .news {
@@ -121,8 +143,6 @@
 /* social links table */
 .msg {
   width: auto;
-  margin-left: auto;
-  margin-right: 20px;
   border-collapse: separate;
   border-spacing: 20px 0;
   table-layout: fixed;
@@ -156,34 +176,31 @@
 }
 
 /* Instagram antd Carousel */
-.ig-carousel-outer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  gap: 0;
-  padding: 0;
-  box-sizing: border-box;
-  margin-top: 5%;
-}
-
 .ig-carousel-wrap {
   position: relative;
-  width: 400px;
-  flex-shrink: 0;
+  width: 480px;
+  max-width: 90vw;
+  margin: 20px auto;
   z-index: 0;
+  overflow: visible;
 }
 
-.ig-carousel {
-  width: 100%;
+.ig-carousel,
+.ant-carousel,
+.ant-carousel .slick-slider,
+.ig-carousel-wrap .slick-slider {
+  overflow: visible !important;
+}
+
+.ig-carousel-wrap .slick-list {
+  overflow: hidden;
 }
 
 /* news section footer */
 .news-footer {
   width: 100%;
   text-align: center;
-  padding: 0 0;
+  padding: 0;
   font-size: 14px;
   color: #fff;
   font-family: 'Michroma', 'Noto Sans TC', sans-serif;
@@ -202,26 +219,32 @@
   margin: 0 auto !important;
 }
 
-.carousel-arrow {
-  flex-shrink: 0;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: #fff;
-  opacity: 0.5;
-  font-size: 2.2rem;
-  font-weight: 900;
-  line-height: 1;
-  padding: 8px;
-  text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
-  user-select: none;
-  transition: color 0.2s, transform 0.2s, opacity 0.2s;
+/* ig 置中 */
+.ant-carousel .slick-track {
+  display: flex !important;
+  align-items: center !important;
 }
 
-.carousel-arrow:hover {
-  color: #4FC0C4;
-  transform: scale(1.2);
-  opacity: 1;
+.ant-carousel .slick-slide {
+  height: auto !important;
+  float: none !important;
+}
+
+.ant-carousel .slick-slide>div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.ant-carousel .slick-prev.carousel-arrow-prev,
+.ant-carousel .carousel-arrow-prev {
+  left: -10% !important;
+}
+
+.ant-carousel .slick-next.carousel-arrow-next,
+.ant-carousel .carousel-arrow-next {
+  right: -10% !important;
 }
 
 /* ===== Mobile ===== */
@@ -264,8 +287,6 @@
   }
 
   .msg {
-    margin-left: 3px;
-    margin-right: 2px;
     border-spacing: 0;
     margin: 10px;
     background: none;
@@ -287,11 +308,18 @@
     text-align: center;
   }
 
-  .carousel-arrow-prev {
-    left: -30px;
+  .ant-carousel .carousel-arrow {
+    padding: 2px;
+    font-size: 1.6rem;
   }
 
-  .carousel-arrow-next {
-    right: -30px;
+  .ant-carousel .slick-prev.carousel-arrow-prev,
+  .ant-carousel .carousel-arrow-prev {
+    left: -10px !important;
+  }
+
+  .ant-carousel .slick-next.carousel-arrow-next,
+  .ant-carousel .carousel-arrow-next {
+    right: -10px !important;
   }
 }

@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Carousel } from 'antd'
-import Menu from '../components/Menu'
-import activities from '../json/activities.json'
+import Menu from '../menu/Menu'
+import activities from '../../json/activities.json'
 import './ActivityPage.css'
 
 function PrevArrow({ onClick }) {

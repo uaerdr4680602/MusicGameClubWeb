@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import IndexPage from './pages/IndexPage'
-import HomePage from './pages/HomePage'
-import AboutPage from './pages/AboutPage'
-import MemberPage from './pages/MemberPage'
-import ActivityPage from './pages/ActivityPage'
-import ContactPage from './pages/ContactPage'
+import IndexPage from './view/pages/IndexPage'
+import HomePage from './view/pages/HomePage'
+import AboutPage from './view/pages/AboutPage'
+import MemberPage from './view/pages/MemberPage'
+import ActivityPage from './view/pages/ActivityPage'
+import ContactPage from './view/pages/ContactPage'
 
 export default function App() {
   return (

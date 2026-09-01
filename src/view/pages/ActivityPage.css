@@ -29,7 +29,7 @@
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  z-index: 9999;
+  z-index: 100;
 }
 
 .activity-page .tab-content {
@@ -112,30 +112,7 @@
   background: transparent !important;
 }
 
-.carousel-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: #fff;
-  opacity: 0.5;
-  font-size: 2rem;
-  font-weight: 900;
-  line-height: 1;
-  padding: 0 8px;
-  text-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
-  user-select: none;
-  transition: color 0.2s, transform 0.2s;
-}
 
-.carousel-arrow:hover {
-  color: #4FC0C4;
-  transform: translateY(-50%) scale(1.2);
-  opacity: 1;
-}
 
 .carousel-arrow-prev {
   left: 8px;
@@ -188,7 +165,7 @@
 
   .activity-page .menu {
     top: 50%;
-    z-index: 1;
+    z-index: 100;
   }
 
   .activity-page .menu-button {

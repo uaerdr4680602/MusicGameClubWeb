@@ -30,7 +30,7 @@
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  z-index: 9999;
+  z-index: 100;
 }
 
 .tab-content {
@@ -50,7 +50,6 @@
 }
 
 .menu-button {
-  display: block;
   width: 100%;
   padding: 12px 60px;
   color: #FFF;
@@ -191,7 +190,7 @@
 
   .menu {
     top: 50%;
-    z-index: 1;
+    z-index: 100;
   }
 
   .menu-button {

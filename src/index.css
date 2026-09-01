@@ -20,7 +20,7 @@ html {
 body {
   margin: 0 0;
   font-family: 'Michroma', 'Noto Sans TC', sans-serif;
-  background: url('/img/bg.jpg') no-repeat center center fixed;
+  background: url('public/img/bg.jpg') no-repeat center center fixed;
   background-color: #000;
   background-size: cover;
   min-height: 100vh;
