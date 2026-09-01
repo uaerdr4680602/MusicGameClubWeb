@@ -17,7 +17,7 @@
   right: 10px;
   opacity: 1;
   padding: 10px;
-  z-index: 2001;
+  z-index: 99999;
 
   display: flex;
   align-items: center;
@@ -32,7 +32,7 @@
   color: #ffffff;
   border: none;
   cursor: pointer;
-  z-index: 2002;
+  z-index: 100000;
 }
 
 /* clickable full-area overlay to close menu */

@@ -39,28 +39,25 @@ export default function MemberPage() {
         {/* 中央角色立繪展示區 */}
         <div className="character-showcase">
           {members.map(m => {
-            const imgSrc = m.imgDesktop || m.img
+            const desktopImg = m['imgDesktop'] || m.img
+            const mobileImg = m['imgMobile'] || desktopImg
             const isActive = activeId === m.id
             return (
               <div
                 key={m.id}
                 className={`character-img-wrapper ${isActive ? 'active' : ''}`}
               >
-                {m.imgDesktop ? (
-                  <picture>
-                    <source media="(max-width: 768px)" srcSet={m.imgMobile || m.imgDesktop} />
-                    <img src={m.imgDesktop} alt={m.name} className="character-img" />
-                  </picture>
-                ) : (
-                  <img src={imgSrc} alt={m.name} className="character-img" />
-                )}
+                <picture>
+                  <source media="(max-width: 768px)" srcSet={mobileImg} />
+                  <img src={desktopImg} alt={m.name} className="character-img" />
+                </picture>
               </div>
             )
           })}
         </div>
 
         {/* 右側成員詳細資訊面板 */}
-        <div key={activeId} className="character-info-panel">
+        <div key={String(activeId)} className="character-info-panel">
           {/* 斜角姓名與職稱區 */}
           <div className="char-name-area">
             <div className="slanted-name-box">
@@ -75,7 +72,7 @@ export default function MemberPage() {
             </div>
           </div>
 
-          {/* 帶有流光邊框的介紹卡片 */}
+          {/* 流光邊框的介紹卡片 */}
           <div className="info-card">
             <div className="border-beam" />
             <div className="info-desc">

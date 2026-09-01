@@ -29,7 +29,7 @@ function InstagramEmbed({ permalink }) {
       data-instgrm-permalink={permalink}
       data-instgrm-version="14"
       style={{
-        background: '#FFF',
+        background: '#fff',
         border: 0,
         borderRadius: '3px',
         boxShadow: '0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15)',
@@ -42,16 +42,16 @@ function InstagramEmbed({ permalink }) {
     >
       <div style={{ padding: '16px' }}>
         <a href={permalink} target="_blank" rel="noreferrer"
-          style={{ background: '#FFFFFF', lineHeight: 0, padding: 0, textAlign: 'center', textDecoration: 'none', width: '100%', display: 'block', margin: '0 auto' }}>
+          style={{ background: '#ffffff', lineHeight: 0, padding: 0, textAlign: 'center', textDecoration: 'none', width: '100%', display: 'block', margin: '0 auto' }}>
           <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-            <div style={{ backgroundColor: '#F4F4F4', borderRadius: '50%', flexGrow: 0, height: 40, marginRight: 14, width: 40 }} />
+            <div style={{ backgroundColor: '#f4f4f4', borderRadius: '50%', flexGrow: 0, height: 40, marginRight: 14, width: 40 }} />
             <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, justifyContent: 'center' }}>
-              <div style={{ backgroundColor: '#F4F4F4', borderRadius: 4, flexGrow: 0, height: 14, marginBottom: 6, width: 100 }} />
-              <div style={{ backgroundColor: '#F4F4F4', borderRadius: 4, flexGrow: 0, height: 14, width: 60 }} />
+              <div style={{ backgroundColor: '#f4f4f4', borderRadius: 4, flexGrow: 0, height: 14, marginBottom: 6, width: 100 }} />
+              <div style={{ backgroundColor: '#f4f4f4', borderRadius: 4, flexGrow: 0, height: 14, width: 60 }} />
             </div>
           </div>
           <div style={{ padding: '19% 0' }} />
-          <div style={{ color: '#3897f0', fontFamily: 'Arial,sans-serif', fontSize: 14, fontStyle: 'normal', fontWeight: 550, lineHeight: '18px', paddingTop: 8 }}>
+          <div style={{ color: '#4FC0C4', fontFamily: 'Arial,sans-serif', fontSize: 14, fontStyle: 'normal', fontWeight: 550, lineHeight: '18px', paddingTop: 8 }}>
             在 Instagram 查看這則貼文
           </div>
         </a>
@@ -77,7 +77,7 @@ export default function HomePage() {
     if (!document.getElementById('instagram-embed-script')) {
       const script = document.createElement('script')
       script.id = 'instagram-embed-script'
-      script.src = '//www.instagram.com/embed.js'
+      script.src = 'https://www.instagram.com/embed.js'
       script.async = true
       document.body.appendChild(script)
     } else if (window['instgrm']) {

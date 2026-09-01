@@ -39,3 +39,125 @@ a {
 button {
   cursor: pointer;
 }
+
+/* ===== 全局 60fps 動態旋轉流光邊框 ===== */
+.border-beam {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 2px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.border-beam::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%) rotate(0deg);
+  background: conic-gradient(transparent 0deg, transparent 280deg, #4FC0C4 330deg, #ffffff 360deg);
+  animation: borderBeamRotate 4s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+@keyframes borderBeamRotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* ===== 頁面共用切換選單 ===== */
+.member-page .menu,
+.activity-page .menu {
+  position: absolute;
+  top: 53%;
+  left: -20px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+}
+
+.member-page .menu-button,
+.activity-page .menu-button {
+  display: block;
+  width: 100%;
+  padding: 12px 60px;
+  color: #FFF;
+  border: none;
+  text-align: center;
+  background-color: #4FC0C4;
+  font-size: 1.5vw;
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+  font-family: 'Michroma', 'Noto Sans TC', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  cursor: pointer;
+}
+
+.member-page .menu-button:hover,
+.member-page .menu-button.active,
+.activity-page .menu-button:hover,
+.activity-page .menu-button.active {
+  background-color: #C6B853;
+  color: #040301;
+  transform: translateX(20px);
+}
+
+@media screen and (max-width: 768px) {
+  .member-page .menu,
+  .activity-page .menu {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    margin: 0 0 20px 0;
+    padding: 5px 0;
+    z-index: 10;
+  }
+
+  .member-page .menu-button,
+  .activity-page .menu-button {
+    width: auto;
+    padding: 10px 8px;
+    font-size: 13px;
+    margin-bottom: 0;
+    clip-path: none;
+    background-color: #4FC0C4;
+    color: #FFF;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 700;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    letter-spacing: 2px;
+  }
+
+  .member-page .menu-button:hover,
+  .member-page .menu-button.active,
+  .activity-page .menu-button:hover,
+  .activity-page .menu-button.active {
+    background-color: #C6B853;
+    color: #040301;
+    transform: translateY(3px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(198, 184, 83, 0.5);
+  }
+}

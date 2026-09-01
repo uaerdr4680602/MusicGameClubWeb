@@ -1,14 +1,19 @@
-/* ===== Contact Page ===== */
+/* ===== Contact ===== */
 .contact-page {
-  min-height: 100vh;
+  height: 100vh;
   position: relative;
+  overflow: hidden;
 }
 
-/* background character images */
+/* 背景人物圖片容器 */
 .bg-cha {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden;
   filter: brightness(40%);
+  pointer-events: none;
 }
 
 .contact-page .left-img {
@@ -56,26 +61,33 @@
   color: #4FC0C4;
 }
 
-/* ===== Mobile ===== */
+/* ===== 行動裝置 ===== */
 @media screen and (max-width: 768px) {
-  .contact-social-links { 
-    gap: 20px;
+  .contact-social-links {
+    flex-direction: column;
+    gap: 24px;
+    top: 52%;
   }
 
   .contact-social-links a svg {
-    width: 50px;
-    height: 50px;
+    width: 52px;
+    height: 52px;
   }
 
+  /* 背景人物圖片置中 */
   .contact-page .left-img {
-    width: 80%;
-    left: -3%;
-    top: 25%;
+    width: 85%;
+    max-width: 420px;
+    left: 35%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .contact-page .right-img {
-    width: 100%;
-    right: 0;
-    top: 30%;
+    width: 105%;
+    max-width: 520px;
+    left: 70%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 }

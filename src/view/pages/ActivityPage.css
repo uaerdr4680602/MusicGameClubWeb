@@ -1,88 +1,57 @@
-/* ===== Activity Page ===== */
+/* ===== 活動紀錄頁 ===== */
 .activity-page {
-  min-height: 100vh;
-  overflow-x: hidden;
+  height: 100vh;
   position: relative;
-}
-
-.activity-page img {
-  display: block;
-  width: 100%;
-  border-radius: 15px;
-  margin: 0 auto;
-  height: auto;
-}
-
-.activity-page p {
-  text-decoration: none;
-  margin: 0;
-  font-size: clamp(12px, 2vw, 22px);
-  text-align: left;
+  overflow: hidden;
   color: #fff;
 }
 
-/* left tab menu */
-.activity-page .menu {
-  position: absolute;
-  top: 53%;
-  left: -20px;
-  transform: translateY(-50%);
+/* 主容器排版 */
+.activity-container {
   display: flex;
-  flex-direction: column;
-  z-index: 100;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  padding: 0 5vw;
+  position: relative;
+  z-index: 5;
 }
 
-.activity-page .tab-content {
-  position: absolute;
-  left: 100%;
-  transform: translateX(0);
-  transition: transform 0.5s ease;
-  top: 0;
-  opacity: 0;
-  width: 100%;
-  height: 100%;
+/* 中央/右側活動展示區塊 */
+.activity-card-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+  margin-left: 140px;
+  animation: slideInRight 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.activity-page .tab-content.active {
-  transform: translateX(-100%);
-  opacity: 1;
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-.activity-page .menu-button {
-  display: block;
-  width: 100%;
-  padding: 12px 60px;
-  color: #FFF;
-  border: none;
-  text-align: center;
-  background-color: #4FC0C4;
-  font-size: 1.5vw;
-  transition: all 0.3s ease;
-  margin-bottom: 10px;
-  font-family: 'Michroma', 'Noto Sans TC', sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  cursor: pointer;
-}
-
-.activity-page .menu-button:hover,
-.activity-page .menu-button.active {
-  background-color: #C6B853;
-  color: #040301;
-  transform: translateX(20px);
-}
-
-/* ===== Activity Card (div-based overlay) ===== */
+/* 活動卡片 */
 .activity-card {
-  position: absolute;
-  top: 60%;
-  left: 55%;
-  transform: translate(-50%, -50%);
-  width: 55%;
-  max-width: 900px;
+  position: relative;
+  width: 50vw;
+  max-width: 800px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
 }
 
-/* antd Carousel wrapper */
+/* 輪播圖片 */
 .activity-carousel-wrap {
   position: relative;
   width: 100%;
@@ -91,13 +60,12 @@
 .activity-carousel .slick-slide img {
   display: block;
   width: 100%;
-  height: 500px;
+  height: 380px;
   object-fit: contain;
-  border-radius: 15px;
+  border-radius: 10px;
   margin: 0 auto;
 }
 
-/* ===== Custom carousel arrows ===== */
 /* 隱藏 slick 原本的 ::before icon */
 .activity-carousel .slick-prev::before,
 .activity-carousel .slick-next::before {
@@ -112,83 +80,107 @@
   background: transparent !important;
 }
 
-
-
-.carousel-arrow-prev {
-  left: 8px;
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
 }
 
 .carousel-arrow-next {
   right: 8px;
 }
 
-
-/* text overlay — 與 carousel 圖片齊寬 */
-.activity-page .text-bg {
+/* 文字說明區域 */
+.text-bg {
   position: relative;
-  /* 讓左右跟 slick-slide 內圖片對齊（slick 預設無額外縮排） */
-  width: 100%;
-  box-sizing: border-box;
-  background-color: rgba(30, 30, 30, 0.4);
-  z-index: 3;
-  overflow: auto;
-  word-break: break-word;
-  overflow-wrap: anywhere;
-  white-space: normal;
-  padding: 10px 14px;
-  line-height: 1.5;
-  font-family: 'Michroma', 'Noto Sans TC', sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  max-height: 190px;
-  border-radius: 0 0 12px 12px;
+  margin-top: 15px;
+  padding: 18px 22px;
+  background-color: #00000052;
+  backdrop-filter: blur(12px);
+  border: 1px solid #4fc0c452;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   text-align: left;
+  overflow: hidden;
 }
 
-/* ===== Mobile ===== */
-@media (max-width: 768px) {
+.activity-title {
+  font-size: clamp(16px, 1.8vw, 22px);
+  font-weight: 800;
+  color: #4FC0C4;
+  margin: 0 0 8px 0;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+.activity-body {
+  max-height: 140px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.activity-body::-webkit-scrollbar {
+  width: 5px;
+}
+
+.activity-body::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.activity-body::-webkit-scrollbar-thumb {
+  background: #4FC0C4;
+  border-radius: 4px;
+}
+
+.activity-body p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #e0f7f7;
+  margin: 0 0 6px 0;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+/* ===== 行動裝置 ===== */
+@media screen and (max-width: 768px) {
+  .activity-page {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+
+  .activity-container {
+    flex-direction: column;
+    padding: 85px 16px 80px;
+    justify-content: flex-start;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .text-bg {
+    backdrop-filter: blur(2px);
+  }
+
+
+
+  .activity-card-container {
+    margin-left: 0;
+    height: auto;
+    width: 100%;
+  }
+
   .activity-card {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    width: 85%;
-    margin: 70vh auto 0;
-    max-width: 100%;
+    width: 100%;
+    padding: 14px;
   }
 
   .activity-carousel .slick-slide img {
-    height: 300px;
-    object-fit: cover;
+    height: 230px;
   }
 
-  .activity-page .menu {
-    top: 50%;
-    z-index: 100;
+  .activity-body {
+    max-height: 160px;
   }
 
-  .activity-page .menu-button {
-    width: 20px;
-    padding: 10px 25px;
-    font-size: 3vw;
-    margin-bottom: 10px;
-  }
-
-  .activity-page .text-bg {
-    max-height: 150px;
-  }
-
-  .activity-page .tab-content {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: auto;
-    transform: translateX(100%);
-  }
-
-  .activity-page .tab-content.active {
-    transform: translateX(0);
+  .activity-body p {
+    font-size: 0.85rem;
   }
 }

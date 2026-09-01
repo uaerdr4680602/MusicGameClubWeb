@@ -22,7 +22,8 @@ function NextArrow({ onClick }) {
 }
 
 export default function ActivityPage() {
-  const [activeId, setActiveId] = useState(null)
+  const [activeId, setActiveId] = useState(activities[0]?.id || '000')
+  const activeActivity = activities.find(a => a.id === activeId) || activities[0]
 
   return (
     <div className="activity-page">
@@ -34,52 +35,55 @@ export default function ActivityPage() {
 
       <Menu />
 
-      <div className="menu">
-        {activities.map(a => (
-          <button
-            key={a.id}
-            className={`menu-button${activeId === a.id ? ' active' : ''}`}
-            onClick={() => setActiveId(a.id)}
-          >
-            {a.label}
-          </button>
-        ))}
-      </div>
-
-      {activities.map(a => (
-        <section
-          key={a.id}
-          id={a.id}
-          className={`tab-content${activeId === a.id ? ' active' : ''}`}
-        >
-          <div className="activity-card">
-            <div className="activity-carousel-wrap">
-              <Carousel
-                arrows
-                infinite={false}
-                className="activity-carousel"
-                prevArrow={<PrevArrow />}
-                nextArrow={<NextArrow />}
+      <main className="activity-container">
+        {/* 左側活動切換選單 */}
+        <div className="menu">
+          {activities.map(a => {
+            const isActive = activeId === a.id
+            return (
+              <button
+                key={a.id}
+                className={`menu-button${isActive ? ' active' : ''}`}
+                onClick={() => setActiveId(a.id)}
               >
-                {a.images.map((src, i) => (
-                  <div key={i}>
-                    <img src={src} alt={`${a.title} 照片 ${i + 1}`} />
-                  </div>
-                ))}
-              </Carousel>
-            </div>
-            <div className="text-bg">
-              <p style={{ fontSize: 'clamp(15px, 2vw, 26px)' }}><b>{a.title}</b></p>
-              <p>
-                <br />
-                {a.body.split('\n').map((line, i) => (
-                  <span key={i}>{line}<br /></span>
-                ))}
-              </p>
+                {a.label}
+              </button>
+            )
+          })}
+        </div>
+
+        {/* 右側/中央活動展示卡片 */}
+        {activeActivity && (
+          <div key={activeActivity.id} className="activity-card-container">
+            <div className="activity-card">
+              <div className="activity-carousel-wrap">
+                <Carousel
+                  arrows
+                  infinite={false}
+                  className="activity-carousel"
+                  prevArrow={<PrevArrow />}
+                  nextArrow={<NextArrow />}
+                >
+                  {activeActivity.images.map((src, i) => (
+                    <div key={i}>
+                      <img src={src} alt={`${activeActivity.title} 照片 ${i + 1}`} />
+                    </div>
+                  ))}
+                </Carousel>
+              </div>
+              <div className="text-bg">
+                <div className="border-beam" />
+                <h2 className="activity-title">{activeActivity.title}</h2>
+                <div className="activity-body">
+                  {activeActivity.body.split('\n').map((line, i) => (
+                    <p key={i}>{line}</p>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
-        </section>
-      ))}
+        )}
+      </main>
 
       <footer className="site-footer">© TNUA MUSIC GAME CLUB 2nd</footer>
     </div>
