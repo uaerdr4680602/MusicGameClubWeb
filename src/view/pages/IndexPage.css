@@ -64,7 +64,7 @@
 
   padding: 15px 40px;
   font-family: 'Michroma', 'Noto Sans TC', sans-serif;
-  font-size: clamp(16px, 2vw, 24px);
+  font-size: clamp(9px, 2vw, 24px);
   cursor: pointer;
   animation: tapBreath 2s infinite ease-in-out;
   transition: background-color 0.3s, color 0.3s;
@@ -73,7 +73,7 @@
 .tap-start-btn:hover {
   background-color: #fff;
   color: #4FC0C4;
-  font-size: clamp(18px, 2vw, 26px);
+  font-size: clamp(10px, 2vw, 26px);
 }
 
 @keyframes tapBreath {

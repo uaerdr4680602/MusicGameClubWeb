@@ -2,8 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './IndexPage.css'
 
-const VIDEO_ID = 'YPcBJeGuarY'
-
 const lines = [
   '若你願意，請跨越門檻',
   '在此之後，你所踏入的，不再只是遊戲',
@@ -18,69 +16,53 @@ export default function IndexPage() {
   const [transitioning, setTransitioning] = useState(false)
   const [started, setStarted] = useState(false)
   const skipped = useRef(false)
-  const playerRef = useRef(null)
-  const iframeRef = useRef(null)
+  const audioRef = useRef(null)
 
   useEffect(() => {
-    function initPlayer() {
-      if (playerRef.current) return // already initialized
-      playerRef.current = new window['YT']['Player']('yt-bg-player', {
-        videoId: VIDEO_ID,
-        playerVars: {
-          autoplay: 0,
-          controls: 0,
-          disablekb: 1,
-          modestbranding: 1,
-          rel: 0,
-          start: 3.7,
-        },
-        events: {
-          'onReady': () => {
-            // do not play on ready, wait for click
-          },
-          'onStateChange': (e) => {
-            if (e.data === 0) {
-              e.target['seekTo'](3.7, true)
-              e.target['playVideo']()
-            }
-          },
-        },
-      })
+    const audio = audioRef.current
+    if (!audio) return
+
+    function handleTimeUpdate() {
+      if (!audio) return
+      const cur = audio.currentTime
+
+      // cur 秒
+      // Fade-in
+      if (cur >= 8 && cur < 11) {
+        const progress = (cur - 8) / 3
+        audio.volume = Math.min(1, Math.max(0, progress))
+      }
+      // Normal volume
+      else if (cur >= 11 && cur < 60) {
+        if (audio.volume !== 1) audio.volume = 1
+      }
+      // Fade-out
+      else if (cur >= 60 && cur < 63) {
+        const remaining = (63 - cur) / 3
+        audio.volume = Math.min(1, Math.max(0, remaining))
+      }
+      // Stop
+      else if (cur >= 63) {
+        audio.pause()
+        audio.volume = 0
+      }
     }
 
-    if (window['YT'] && window['YT']['Player']) {
-      initPlayer()
-    } else {
-      if (!document.getElementById('yt-api-script')) {
-        const tag = document.createElement('script')
-        tag.id = 'yt-api-script'
-        tag.src = 'https://www.youtube.com/iframe_api'
-        const firstScript = document.getElementsByTagName('script')[0]
-        firstScript.parentNode.insertBefore(tag, firstScript)
-      }
-      window['onYouTubeIframeAPIReady'] = initPlayer
-    }
+    audio.addEventListener('timeupdate', handleTimeUpdate)
 
     return () => {
-      if (playerRef.current) {
-        try { playerRef.current.destroy() } catch { /* ignore */ }
-        playerRef.current = null
+      audio.removeEventListener('timeupdate', handleTimeUpdate)
+      if (audioRef.current) {
+        audioRef.current.pause()
       }
     }
   }, [])
 
   function handleStart() {
-    if (playerRef.current && playerRef.current['unMute']) {
-      try {
-        playerRef.current['unMute']()
-        playerRef.current['setVolume'](50)
-        playerRef.current['seekTo'](3.7, true)
-        if (playerRef.current['getPlayerState'] && playerRef.current['getPlayerState']() !== 1) {
-          playerRef.current['playVideo']()
-        }
-      } catch {
-        // ignore
-      }
+    if (audioRef.current) {
+      audioRef.current.currentTime = 8
+      audioRef.current.volume = 0
+      audioRef.current.play().catch(() => { })
     }
     setStarted(true)
   }
@@ -136,22 +118,25 @@ export default function IndexPage() {
 
   function enterSite() {
     setTransitioning(true)
+    if (audioRef.current) {
+      const audio = audioRef.current
+      const startVol = audio.volume
+      let step = 0
+      const fadeTimer = setInterval(() => {
+        step += 1
+        if (audio && step <= 10) {
+          audio.volume = Math.max(0, startVol * (1 - step / 10))
+        } else {
+          clearInterval(fadeTimer)
+          if (audio) audio.pause()
+        }
+      }, 100)
+    }
     setTimeout(() => navigate('/home'), 1200)
   }
   return (
     <>
-      {/* Hidden YouTube */}
-      <div style={{
-        position: 'fixed',
-        width: '1px',
-        height: '1px',
-        overflow: 'hidden',
-        opacity: 0,
-        pointerEvents: 'none',
-        zIndex: -1,
-      }}>
-        <div id="yt-bg-player" ref={iframeRef} />
-      </div>
+      <audio ref={audioRef} src="/bgm/op.mp3" preload="auto" />
 
       {!preloaderHidden && (
         <div id="preloader" className="preloader">

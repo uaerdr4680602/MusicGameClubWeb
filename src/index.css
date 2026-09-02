@@ -9,6 +9,61 @@
   box-sizing: border-box;
 }
 
+/* 鼠標 (桌面端隱藏原生游標) */
+@media (hover: hover) and (pointer: fine) {
+
+  html,
+  body,
+  *,
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    cursor: none !important;
+  }
+}
+
+/* 行動裝置關閉鼠標 */
+@media (pointer: coarse),
+(hover: none) {
+  .custom-cursor {
+    display: none !important;
+  }
+}
+
+.custom-cursor {
+  position: fixed;
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  pointer-events: none;
+  z-index: 999999;
+  color: #ffffff;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, color 0.15s ease, filter 0.15s ease;
+  filter: drop-shadow(0 0 3px #ffffff) drop-shadow(0 0 8px #4FC0C4) drop-shadow(0 0 16px #4FC0C4);
+}
+
+/* 圖示加粗效果 */
+.custom-cursor svg path {
+  stroke: currentColor;
+  stroke-width: 50px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.custom-cursor.hovered {
+  transform: translate(-50%, -50%) scale(1.5) rotate(45deg);
+  color: #4FC0C4;
+  filter: drop-shadow(0 0 4px #4FC0C4) drop-shadow(0 0 12px #ffffff) drop-shadow(0 0 24px #ffffff);
+}
+
+.custom-cursor.clicking {
+  transform: translate(-50%, -50%) scale(0.75);
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
@@ -73,6 +128,7 @@ button {
   0% {
     transform: translate(-50%, -50%) rotate(0deg);
   }
+
   100% {
     transform: translate(-50%, -50%) rotate(360deg);
   }
@@ -118,6 +174,7 @@ button {
 }
 
 @media screen and (max-width: 768px) {
+
   .member-page .menu,
   .activity-page .menu {
     position: relative;
