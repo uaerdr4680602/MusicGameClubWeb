@@ -72,7 +72,7 @@ export default function Menu() {
           onClose={() => setOpen(false)}
           styles={drawerStyles}
           closable={false}
-          zIndex={2000}
+          zIndex={100000}
         >
           <div className="menu-overlay-area">
             <div

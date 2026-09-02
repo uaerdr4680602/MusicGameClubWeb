@@ -17,14 +17,15 @@
   right: 10px;
   opacity: 1;
   padding: 10px;
-  z-index: 99999;
+  z-index: 100001;
 
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  pointer-events: none;
 }
 
-/* hamburger / close button */
+/* close button */
 .menu-toggle {
   font-size: clamp(20px, 3vw, 80px);
   margin-right: 3%;
@@ -32,7 +33,8 @@
   color: #ffffff;
   border: none;
   cursor: pointer;
-  z-index: 100000;
+  z-index: 100002;
+  pointer-events: auto;
 }
 
 /* clickable full-area overlay to close menu */
@@ -86,16 +88,31 @@
 }
 
 /* logo (mg2.png) link used by all inner pages */
+.logo-link {
+  display: block;
+  position: fixed;
+  left: 2vw;
+  top: 3.5%;
+  width: 25vw;
+  max-width: 320px;
+  min-width: 140px;
+  z-index: 1000;
+  pointer-events: auto;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.logo-link:hover {
+  opacity: 0.85;
+  transform: scale(1.02);
+}
+
 .mg-logo {
   display: block;
+  width: 100%;
   height: auto;
-  position: absolute;
-  left: 0;
-  top: 5%;
-  width: 30%;
   border: none;
-  pointer-events: auto;
-  z-index: 1010;
+  pointer-events: none;
 }
 
 /* footer */
@@ -122,9 +139,13 @@
     letter-spacing: 4px;
   }
 
-  .mg-logo {
-    top: 6%;
-    width: 50%;
+  .logo-link {
+    top: 2.5%;
+    left: 3vw;
+    width: 55vw;
+    max-width: 220px;
+    min-width: 120px;
+    z-index: 1000;
   }
 }
 
@@ -134,8 +155,11 @@
     font-size: clamp(28px, 6vw, 60px);
   }
 
-  .mg-logo {
-    top: 6%;
-    width: 50%;
+  .logo-link {
+    top: 3%;
+    left: 3vw;
+    width: 40vw;
+    max-width: 260px;
+    z-index: 1000;
   }
 }

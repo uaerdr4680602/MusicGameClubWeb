@@ -6,11 +6,9 @@ import './ContactPage.css'
 export default function ContactPage() {
   return (
     <div className="contact-page">
-      <div>
-        <Link to="/home">
-          <img src="/img/mg2.png" className="mg-logo" alt="TMGC Logo" />
-        </Link>
-      </div>
+      <Link to="/home" className="logo-link">
+        <img src="/img/mg2.png" className="mg-logo" alt="TMGC Logo" />
+      </Link>
 
       <div className="bg-cha">
         <img src="/img/girl.png" className="left-img" alt="" />

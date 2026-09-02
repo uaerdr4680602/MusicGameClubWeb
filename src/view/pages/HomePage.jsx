@@ -134,7 +134,7 @@ export default function HomePage() {
         </div>
 
         <div>
-          <Link to="/home">
+          <Link to="/home" className="home-logo-link">
             <img ref={mgRef} src="/img/mg2.png" className="mg" alt="TMGC Logo" />
           </Link>
         </div>

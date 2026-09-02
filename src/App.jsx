@@ -179,21 +179,36 @@ function BgmPlayer() {
 }
 
 export default function App() {
-  // click.mp3
+  // 全域防護：禁用右鍵選單 (contextmenu) 與圖片拖曳 (dragstart)
   useEffect(() => {
     function handleGlobalClick() {
       try {
         const sound = new Audio('/bgm/click.mp3')
-        sound.volume = 0.05
+        sound.volume = 0.1
         sound.play().catch(() => { })
       } catch {
         // ignore
       }
     }
 
+    function handleContextMenu(e) {
+      e.preventDefault()
+    }
+
+    function handleDragStart(e) {
+      if (e.target && e.target.tagName === 'IMG') {
+        e.preventDefault()
+      }
+    }
+
     window.addEventListener('click', handleGlobalClick, true)
+    window.addEventListener('contextmenu', handleContextMenu, true)
+    window.addEventListener('dragstart', handleDragStart, true)
+
     return () => {
       window.removeEventListener('click', handleGlobalClick, true)
+      window.removeEventListener('contextmenu', handleContextMenu, true)
+      window.removeEventListener('dragstart', handleDragStart, true)
     }
   }, [])
 

@@ -9,6 +9,24 @@
   box-sizing: border-box;
 }
 
+/* 全站禁止文字與圖片選取/拖曳 (防複製與另存圖片) */
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 /* 鼠標 (桌面端隱藏原生游標) */
 @media (hover: hover) and (pointer: fine) {
 

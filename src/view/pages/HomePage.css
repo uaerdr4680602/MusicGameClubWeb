@@ -107,6 +107,12 @@
 }
 
 /* scrolling logo */
+.home-logo-link {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+}
+
 .mg {
   position: relative;
   left: 50%;

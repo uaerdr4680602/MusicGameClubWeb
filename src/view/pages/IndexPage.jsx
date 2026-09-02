@@ -19,50 +19,21 @@ export default function IndexPage() {
   const audioRef = useRef(null)
 
   useEffect(() => {
-    const audio = audioRef.current
-    if (!audio) return
-
-    function handleTimeUpdate() {
-      if (!audio) return
-      const cur = audio.currentTime
-
-      // cur 秒
-      // Fade-in
-      if (cur >= 8 && cur < 11) {
-        const progress = (cur - 8) / 3
-        audio.volume = Math.min(1, Math.max(0, progress))
-      }
-      // Normal volume
-      else if (cur >= 11 && cur < 60) {
-        if (audio.volume !== 1) audio.volume = 1
-      }
-      // Fade-out
-      else if (cur >= 60 && cur < 63) {
-        const remaining = (63 - cur) / 3
-        audio.volume = Math.min(1, Math.max(0, remaining))
-      }
-      // Stop
-      else if (cur >= 63) {
-        audio.pause()
-        audio.volume = 0
-      }
-    }
-
-    audio.addEventListener('timeupdate', handleTimeUpdate)
-
     return () => {
-      audio.removeEventListener('timeupdate', handleTimeUpdate)
       if (audioRef.current) {
         audioRef.current.pause()
       }
     }
   }, [])
 
+  // 點擊 TAP TO START 播放音樂
   function handleStart() {
     if (audioRef.current) {
-      audioRef.current.currentTime = 8
-      audioRef.current.volume = 0
-      audioRef.current.play().catch(() => { })
+      const audio = audioRef.current
+      audio.loop = true
+      audio.currentTime = 0
+      audio.volume = 0.5
+      audio.play().catch(() => { })
     }
     setStarted(true)
   }
@@ -116,21 +87,28 @@ export default function IndexPage() {
     setTimeout(() => setPreloaderHidden(true), 1000)
   }
 
+  // 切換頁面時 fadeOut
   function enterSite() {
     setTransitioning(true)
     if (audioRef.current) {
       const audio = audioRef.current
       const startVol = audio.volume
-      let step = 0
+      const fadeDuration = 1000
+      const intervalMs = 20
+      const totalSteps = fadeDuration / intervalMs
+      const stepAmount = startVol / totalSteps
+
       const fadeTimer = setInterval(() => {
-        step += 1
-        if (audio && step <= 10) {
-          audio.volume = Math.max(0, startVol * (1 - step / 10))
+        if (audio && audio.volume - stepAmount > 0.001) {
+          audio.volume -= stepAmount
         } else {
+          if (audio) {
+            audio.volume = 0
+            audio.pause()
+          }
           clearInterval(fadeTimer)
-          if (audio) audio.pause()
         }
-      }, 100)
+      }, intervalMs)
     }
     setTimeout(() => navigate('/home'), 1200)
   }

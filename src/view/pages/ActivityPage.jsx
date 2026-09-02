@@ -27,11 +27,9 @@ export default function ActivityPage() {
 
   return (
     <div className="activity-page">
-      <div>
-        <Link to="/home">
-          <img src="/img/mg2.png" className="mg-logo" alt="TMGC Logo" />
-        </Link>
-      </div>
+      <Link to="/home" className="logo-link">
+        <img src="/img/mg2.png" className="mg-logo" alt="TMGC Logo" />
+      </Link>
 
       <Menu />
 
