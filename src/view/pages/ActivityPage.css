@@ -85,10 +85,6 @@
   top: 50%;
 }
 
-.carousel-arrow-next {
-  right: 8px;
-}
-
 /* 文字說明區域 */
 .text-bg {
   position: relative;
@@ -149,17 +145,11 @@
 
   .activity-container {
     flex-direction: column;
-    padding: 85px 16px 80px;
+    padding: 75px 16px 50px;
     justify-content: flex-start;
     height: auto;
     min-height: 100vh;
   }
-
-  .text-bg {
-    backdrop-filter: blur(2px);
-  }
-
-
 
   .activity-card-container {
     margin-left: 0;
@@ -169,18 +159,42 @@
 
   .activity-card {
     width: 100%;
-    padding: 14px;
+    padding: 0;
   }
 
   .activity-carousel .slick-slide img {
     height: 230px;
   }
 
+  .activity-carousel .slick-prev.carousel-arrow-prev,
+  .activity-carousel .carousel-arrow-prev {
+    left: 11px !important;
+  }
+
+  .activity-carousel .slick-next.carousel-arrow-next,
+  .activity-carousel .carousel-arrow-next {
+    right: 11px !important;
+  }
+
+  .text-bg {
+    margin-top: 8px;
+    padding: 10px 14px;
+    backdrop-filter: blur(4px);
+    border-radius: 10px;
+  }
+
+  .activity-title {
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+  }
+
   .activity-body {
-    max-height: 160px;
+    max-height: 110px;
   }
 
   .activity-body p {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    margin-bottom: 4px;
   }
 }

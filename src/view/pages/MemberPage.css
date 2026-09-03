@@ -112,9 +112,9 @@
 }
 
 .slanted-name-box .char-name {
-  font-size: clamp(2rem, 3vw, 2.6rem);
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
   font-weight: 900;
-  color: #040301;
+  color: #ffffff;
   margin: 0;
   letter-spacing: 3px;
   font-family: 'Noto Sans TC', sans-serif;
@@ -160,10 +160,13 @@
   border-radius: 12px;
   padding: 24px;
   overflow: hidden;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
 }
 
 .info-desc {
-  max-height: 240px;
+  flex: 1;
   overflow-y: auto;
   padding-right: 6px;
 }
@@ -226,49 +229,57 @@
 
   .member-container {
     flex-direction: column;
-    padding: 85px 16px 80px;
+    padding: 75px 16px 40px;
     justify-content: flex-start;
     height: auto;
     min-height: 100vh;
   }
 
-
-
-  /* 行動版立繪區域 */
+  /* 行動版立繪區域：適度縮小並往下擺放 */
   .character-showcase {
     margin-left: 0;
-    height: 32vh;
+    height: 190px;
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  .character-img-wrapper.active {
+    animation: slideInFromRightMobile 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
   }
 
   .character-img {
-    max-height: 30vh;
+    max-height: 190px;
     object-fit: contain;
   }
 
   .character-info-panel {
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    gap: 10px;
   }
 
   /* 姓名、職稱與自介文字 */
   .char-name-area {
-    margin-bottom: 12px;
+    margin-bottom: 6px;
   }
 
   .char-name {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 
   .sub-name-text {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     letter-spacing: 1px;
   }
 
   .info-card {
-    padding: 16px;
-    backdrop-filter: blur(2px);
+    padding: 12px 14px;
+    backdrop-filter: blur(6px);
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
   }
 
   .info-card::after {
@@ -276,16 +287,29 @@
   }
 
   .info-desc {
-    max-height: 160px;
+    flex: 1;
+    overflow-y: auto;
   }
 
   .info-desc p {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     line-height: 1.5;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
 
   .member-social-link {
     font-size: 0.8rem;
+  }
+}
+
+@keyframes slideInFromRightMobile {
+  from {
+    opacity: 0;
+    transform: translate(calc(-50% + 60px), -30%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -30%);
   }
 }

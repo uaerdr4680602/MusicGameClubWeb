@@ -10,6 +10,7 @@
 .ant-carousel .slick-next {
   background: transparent !important;
 }
+
 .ant-carousel .carousel-arrow,
 .carousel-arrow {
   position: absolute;
@@ -39,6 +40,7 @@
 
 /* ===== Mobile ===== */
 @media screen and (max-width: 768px) {
+
   .ant-carousel .carousel-arrow,
   .carousel-arrow {
     padding: 2px;
@@ -48,12 +50,12 @@
   .ant-carousel .slick-prev.carousel-arrow-prev,
   .ant-carousel .carousel-arrow-prev,
   .carousel-arrow-prev {
-    left: -10px !important;
+    left: -5px !important;
   }
 
   .ant-carousel .slick-next.carousel-arrow-next,
   .ant-carousel .carousel-arrow-next,
   .carousel-arrow-next {
-    right: -10px !important;
+    right: -5px !important;
   }
 }
