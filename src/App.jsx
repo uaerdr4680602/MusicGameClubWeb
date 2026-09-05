@@ -84,7 +84,7 @@ function BgmPlayer() {
     }
 
     const bgm = bgmRef.current
-    const TARGET_VOL = 0.25
+    const TARGET_VOL = 0.35
     const FADE_DURATION = 1000 // 淡入淡出時間 1 秒
     const INTERVAL_MS = 10 // 每 10 毫秒更新音量
     const totalSteps = FADE_DURATION / INTERVAL_MS

@@ -17,6 +17,333 @@
   z-index: 5;
 }
 
+/* ===== 學期選單 ===== */
+.arcade-select-stage {
+  position: relative;
+  width: 100vw;
+  max-width: 100vw;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+  z-index: 10;
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.arcade-header {
+  position: absolute;
+  top: 20%;
+  left: 4vw;
+  text-align: left;
+  margin: 0;
+}
+
+.arcade-title {
+  font-family: 'Noto Sans TC', 'Michroma', sans-serif;
+  font-size: 4rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 4px;
+  text-shadow: 0 0 15px #4FC0C4, 0 0 30px #4FC0C4;
+  margin: 0;
+}
+
+.arcade-title-eng {
+  font-family: 'Michroma', sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  color: #4FC0C4;
+  letter-spacing: 4px;
+  text-shadow: 0 0 15px #7FFBFD;
+  margin: 0;
+}
+
+.arcade-subtitle {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 1rem;
+  color: #4FC0C4;
+  letter-spacing: 3px;
+  margin-top: 8px;
+  opacity: 0.9;
+}
+
+.arcade-song-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 620px;
+}
+
+/* Arcade Project DIVA Banner Card */
+.arcade-banner-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 600px;
+  max-width: 85vw;
+  height: 86px;
+  padding: 0 32px 0 24px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  user-select: none;
+  background: linear-gradient(135deg, #7FFBFD 0%, #4FC0C4 40%, #15575A 100%);
+  clip-path: polygon(30px 0, 100% 0, calc(100% - 30px) 100%, 0 100%);
+  border-top: 2px solid #E0FFFF;
+  border-bottom: 2px solid #092B2D;
+  margin: 0 auto;
+}
+
+.arcade-wheel-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100vw;
+  max-width: 100vw;
+  position: relative;
+}
+
+.arcade-song-viewport {
+  position: relative;
+  width: 100vw;
+  max-width: 100vw;
+  height: 650px;
+  max-height: 85vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+}
+
+.arcade-song-track {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+/* 箭頭 */
+.arcade-wheel-arrow-up,
+.arcade-wheel-arrow-down {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  transform: rotate(90deg) !important;
+  font-size: 3rem !important;
+  color: #fff !important;
+  opacity: 0.85 !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  transition: all 0.2s ease !important;
+  z-index: 40 !important;
+  line-height: 1 !important;
+  padding: 4px 16px !important;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.9) !important;
+}
+
+.arcade-wheel-arrow-up:hover,
+.arcade-wheel-arrow-down:hover {
+  color: #4FC0C4 !important;
+  opacity: 1 !important;
+  transform: rotate(90deg) scale(1.3) !important;
+  text-shadow: 0 0 12px #4FC0C4 !important;
+}
+
+/* 非可點擊 淡出 */
+.arcade-banner-card.dimmed {
+  opacity: 0.35;
+  filter: grayscale(40%);
+  pointer-events: none;
+  cursor: default;
+  box-shadow: none;
+  margin: 0 auto;
+  transform: translateX(var(--diag-offset, 0px)) scale(0.94);
+}
+
+/* 可點擊卡片 */
+.arcade-banner-card.focused {
+  opacity: 1;
+  filter: none;
+  pointer-events: auto;
+  cursor: pointer;
+  margin: 0 auto;
+  box-shadow: 0 0 35px rgba(79, 192, 196, 0.8), 0 0 30px rgba(127, 251, 253, 0.9);
+  z-index: 30;
+  border-top-color: #FFFFFF;
+  transform: translateX(0px) scale(1.06);
+}
+
+.arcade-banner-card.focused:hover {
+  transform: translateX(35px) scale(1.12);
+  box-shadow: 0 0 50px rgba(79, 192, 196, 1), 0 0 40px rgba(127, 251, 253, 1);
+  z-index: 40;
+}
+
+/* Star Badge */
+.banner-star-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  border-radius: 6px;
+  padding: 6px 14px;
+  min-width: 95px;
+}
+
+.star-icon {
+  color: #FFD700;
+  font-size: 1.2rem;
+  text-shadow: 0 0 6px #FFD700;
+}
+
+.star-num {
+  font-family: 'Michroma', sans-serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: #FFF;
+}
+
+.carousel-arrow.disabled {
+  opacity: 0.15 !important;
+  pointer-events: none !important;
+  cursor: default !important;
+}
+
+/* Main Title Content */
+.banner-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  text-align: center;
+}
+
+.banner-main-title {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 900;
+  font-size: 1.55rem;
+  color: #040301;
+  text-shadow: none;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+/* Pill Shaped Tag  */
+.banner-tag {
+  font-family: 'Michroma', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #ffffff;
+  background: transparent;
+  border: 1.5px solid #ffffff;
+  border-radius: 20px;
+  padding: 6px 18px;
+  letter-spacing: 1px;
+  transition: all 0.2s ease;
+  user-select: none;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+}
+
+.banner-tag.start-pulse {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #ffffff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+  animation: pillPulse 0.9s infinite alternate ease-in-out;
+}
+
+@keyframes pillPulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
+  }
+
+  100% {
+    opacity: 0.45;
+    transform: scale(0.96);
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* ===== 返回按鈕與側邊欄 ===== */
+.back-to-sem-btn {
+  background: transparent;
+  border: 1.5px solid #ffffff;
+  color: #ffffff;
+  font-family: 'Michroma', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 6px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-left: 60px;
+  margin-bottom: 16px;
+  transition: all 0.25s ease;
+  user-select: none;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+  letter-spacing: 1px;
+  width: auto;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.back-to-sem-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #ffffff;
+  color: #ffffff;
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.9);
+  transform: scale(1.05);
+}
+
+/* 左側活動選單側邊欄 */
+.activity-sidebar {
+  position: absolute;
+  top: 53%;
+  left: -20px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 100;
+}
+
+.activity-sidebar .menu {
+  position: relative;
+  top: auto;
+  left: auto;
+  transform: none;
+}
+
 /* 中央/右側活動展示區塊 */
 .activity-card-container {
   flex: 1;
@@ -43,74 +370,67 @@
 /* 活動卡片 */
 .activity-card {
   position: relative;
-  width: 50vw;
-  max-width: 800px;
+  width: 44vw;
+  max-width: 720px;
   background: transparent;
   border: none;
   padding: 0;
-  box-shadow: none;
 }
 
-/* 輪播圖片 */
 .activity-carousel-wrap {
   position: relative;
   width: 100%;
+  border-radius: 12px;
+  overflow: visible;
+  mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+}
+
+.activity-carousel .carousel-arrow-prev {
+  left: 15px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 50 !important;
+}
+
+.activity-carousel .carousel-arrow-next {
+  right: 15px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 50 !important;
 }
 
 .activity-carousel .slick-slide img {
-  display: block;
   width: 100%;
-  height: 380px;
-  object-fit: contain;
-  border-radius: 10px;
-  margin: 0 auto;
+  height: 310px;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
 }
 
-/* 隱藏 slick 原本的 ::before icon */
-.activity-carousel .slick-prev::before,
-.activity-carousel .slick-next::before {
-  display: none;
-}
-
-.activity-carousel .slick-prev,
-.activity-carousel .slick-next {
-  z-index: 10;
-  width: auto;
-  height: auto;
-  background: transparent !important;
-}
-
-.carousel-arrow {
-  position: absolute;
-  top: 50%;
-}
-
-/* 文字說明區域 */
 .text-bg {
   position: relative;
   margin-top: 15px;
-  padding: 18px 22px;
-  background-color: #00000052;
-  backdrop-filter: blur(12px);
-  border: 1px solid #4fc0c452;
+  background: rgba(4, 3, 1, 0.75);
+  border: 1px solid rgba(79, 192, 196, 0.4);
+  backdrop-filter: blur(8px);
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  text-align: left;
+  padding: 18px 22px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   overflow: hidden;
 }
 
 .activity-title {
-  font-size: clamp(16px, 1.8vw, 22px);
-  font-weight: 800;
+  font-size: 1.4rem;
   color: #4FC0C4;
-  margin: 0 0 8px 0;
-  font-family: 'Noto Sans TC', sans-serif;
+  margin: 0 0 10px 0;
+  font-family: 'Michroma', 'Noto Sans TC', sans-serif;
 }
 
 .activity-body {
   max-height: 140px;
   overflow-y: auto;
-  padding-right: 6px;
+  padding-right: 8px;
 }
 
 .activity-body::-webkit-scrollbar {
@@ -132,23 +452,156 @@
   line-height: 1.6;
   color: #e0f7f7;
   margin: 0 0 6px 0;
+  min-height: 1.2em;
   font-family: 'Noto Sans TC', sans-serif;
 }
 
 /* ===== 行動裝置 ===== */
 @media screen and (max-width: 768px) {
   .activity-page {
-    height: auto;
-    min-height: 100vh;
-    overflow-y: auto;
+    height: 100vh;
+    overflow: hidden;
   }
 
   .activity-container {
     flex-direction: column;
-    padding: 75px 16px 50px;
+    padding: 65px 0 0;
     justify-content: flex-start;
-    height: auto;
-    min-height: 100vh;
+    height: calc(100vh - 65px);
+    overflow: hidden;
+  }
+
+  .arcade-select-stage {
+    height: 100%;
+    width: 100vw;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+  }
+
+  .arcade-header {
+    position: relative;
+    top: auto;
+    left: auto;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 8px;
+  }
+
+  .arcade-wheel-container {
+    width: 100vw;
+    max-width: 100vw;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    margin-top: 15px;
+  }
+
+  .arcade-wheel-arrow-up,
+  .arcade-wheel-arrow-down {
+    display: none !important;
+  }
+
+  .arcade-song-viewport {
+    width: 100vw;
+    max-width: 100vw;
+    height: 100% !important;
+    max-height: none !important;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 88%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 88%, transparent 100%);
+  }
+
+  .arcade-song-track {
+    gap: 12px !important;
+    align-items: center !important;
+  }
+
+  .arcade-title {
+    font-size: 2.5rem;
+  }
+
+  .arcade-title-eng {
+    font-size: 0.6rem;
+  }
+
+  .arcade-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .arcade-banner-card {
+    height: 60px;
+    padding: 0 12px 0 10px;
+    clip-path: polygon(15px 0, 100% 0, calc(100% - 15px) 100%, 0 100%);
+    width: 88vw;
+    max-width: 360px;
+    margin: 0 auto !important;
+  }
+
+  .arcade-banner-card.dimmed {
+    transform: translateX(0px) scale(0.94) !important;
+  }
+
+  .arcade-banner-card.focused {
+    transform: translateX(0px) scale(1.04) !important;
+  }
+
+  .arcade-banner-card.focused:hover {
+    transform: translateX(0px) scale(1.06) !important;
+  }
+
+  .banner-star-badge {
+    padding: 4px 8px;
+    min-width: 70px;
+  }
+
+  .star-icon {
+    font-size: 0.95rem;
+  }
+
+  .star-num {
+    font-size: 0.85rem;
+  }
+
+  .banner-content {
+    margin-left: 10px;
+  }
+
+  .banner-main-title {
+    font-size: 1rem;
+  }
+
+  .banner-sub-title {
+    font-size: 0.6rem;
+  }
+
+  .banner-tag {
+    font-size: 0.5rem;
+    padding: 3px 6px;
+  }
+
+  .activity-sidebar {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .back-to-sem-btn {
+    margin-left: 0;
+    width: 100%;
+    max-width: 200px;
+    margin-bottom: 10px;
   }
 
   .activity-card-container {
@@ -163,7 +616,7 @@
   }
 
   .activity-carousel .slick-slide img {
-    height: 230px;
+    height: 195px;
   }
 
   .activity-carousel .slick-prev.carousel-arrow-prev,
