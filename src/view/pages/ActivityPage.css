@@ -45,15 +45,16 @@
 
 .arcade-header {
   position: absolute;
-  top: 20%;
+  top: 10%;
   left: 4vw;
-  text-align: left;
+  text-align: center;
   margin: 0;
+  z-index: 20;
 }
 
 .arcade-title {
   font-family: 'Noto Sans TC', 'Michroma', sans-serif;
-  font-size: 4rem;
+  font-size: clamp(2.4rem, 3.8vw, 4rem);
   font-weight: 900;
   color: #fff;
   letter-spacing: 4px;
@@ -63,7 +64,7 @@
 
 .arcade-title-eng {
   font-family: 'Michroma', sans-serif;
-  font-size: 1rem;
+  font-size: clamp(0.85rem, 1.1vw, 1.1rem);
   font-weight: 900;
   color: #4FC0C4;
   letter-spacing: 4px;
@@ -71,44 +72,57 @@
   margin: 0;
 }
 
-.arcade-subtitle {
-  font-family: 'Noto Sans TC', sans-serif;
-  font-size: 1rem;
-  color: #4FC0C4;
-  letter-spacing: 3px;
-  margin-top: 8px;
-  opacity: 0.9;
-}
-
-.arcade-song-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  width: 100%;
-  max-width: 620px;
-}
-
-/* Arcade Project DIVA Banner Card */
+/* Arcade Banner Card */
 .arcade-banner-card {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 600px;
-  max-width: 85vw;
-  height: 86px;
-  padding: 0 32px 0 24px;
+  width: 680px;
+  max-width: 88vw;
+  height: 98px;
+  padding: 0 220px 0 28px;
   border: none;
   cursor: pointer;
   outline: none;
   transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
   user-select: none;
-  background: linear-gradient(135deg, #7FFBFD 0%, #4FC0C4 40%, #15575A 100%);
-  clip-path: polygon(30px 0, 100% 0, calc(100% - 30px) 100%, 0 100%);
+  background: linear-gradient(135deg, #7FFBFD 0%, #3DA6AA 50%, #0F4547 100%);
+  clip-path: polygon(36px 0, 100% 0, calc(100% - 36px) 100%, 0 100%);
   border-top: 2px solid #E0FFFF;
   border-bottom: 2px solid #092B2D;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
   margin: 0 auto;
+}
+
+.arcade-banner-card.dimmed {
+  opacity: 0.45;
+  filter: brightness(0.7) grayscale(30%);
+  pointer-events: none;
+  cursor: default;
+  box-shadow: none;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #257C7E 0%, #154D4F 100%);
+  transform: translateX(var(--diag-offset, 0px)) scale(0.94);
+}
+
+.arcade-banner-card.focused {
+  opacity: 1;
+  filter: none;
+  pointer-events: auto;
+  cursor: pointer;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #7FFBFD 0%, #3DA6AA 50%, #115053 100%);
+  box-shadow: 0 0 35px rgba(79, 192, 196, 0.95), 0 0 30px rgba(127, 251, 253, 0.9);
+  z-index: 30;
+  border-top-color: #FFFFFF;
+  transform: translateX(0px) scale(1.06);
+}
+
+.arcade-banner-card.focused:hover {
+  transform: translateX(35px) scale(1.12);
+  box-shadow: 0 0 50px rgba(79, 192, 196, 1), 0 0 40px rgba(127, 251, 253, 1);
+  z-index: 40;
 }
 
 .arcade-wheel-container {
@@ -125,8 +139,8 @@
   position: relative;
   width: 100vw;
   max-width: 100vw;
-  height: 650px;
-  max-height: 85vh;
+  height: 620px;
+  max-height: 78vh;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -138,12 +152,12 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
   transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
   will-change: transform;
 }
 
-/* 箭頭 */
+/* 箭頭 (Wheel Arrows) */
 .arcade-wheel-arrow-up,
 .arcade-wheel-arrow-down {
   position: relative !important;
@@ -151,7 +165,7 @@
   left: auto !important;
   right: auto !important;
   transform: rotate(90deg) !important;
-  font-size: 3rem !important;
+  font-size: 3.2rem !important;
   color: #fff !important;
   opacity: 0.85 !important;
   background: transparent !important;
@@ -167,66 +181,10 @@
 
 .arcade-wheel-arrow-up:hover,
 .arcade-wheel-arrow-down:hover {
-  color: #4FC0C4 !important;
+  color: #7FFBFD !important;
   opacity: 1 !important;
   transform: rotate(90deg) scale(1.3) !important;
-  text-shadow: 0 0 12px #4FC0C4 !important;
-}
-
-/* 非可點擊 淡出 */
-.arcade-banner-card.dimmed {
-  opacity: 0.35;
-  filter: grayscale(40%);
-  pointer-events: none;
-  cursor: default;
-  box-shadow: none;
-  margin: 0 auto;
-  transform: translateX(var(--diag-offset, 0px)) scale(0.94);
-}
-
-/* 可點擊卡片 */
-.arcade-banner-card.focused {
-  opacity: 1;
-  filter: none;
-  pointer-events: auto;
-  cursor: pointer;
-  margin: 0 auto;
-  box-shadow: 0 0 35px rgba(79, 192, 196, 0.8), 0 0 30px rgba(127, 251, 253, 0.9);
-  z-index: 30;
-  border-top-color: #FFFFFF;
-  transform: translateX(0px) scale(1.06);
-}
-
-.arcade-banner-card.focused:hover {
-  transform: translateX(35px) scale(1.12);
-  box-shadow: 0 0 50px rgba(79, 192, 196, 1), 0 0 40px rgba(127, 251, 253, 1);
-  z-index: 40;
-}
-
-/* Star Badge */
-.banner-star-badge {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  background: rgba(0, 0, 0, 0.5);
-  border: 2px solid rgba(255, 255, 255, 0.85);
-  border-radius: 6px;
-  padding: 6px 14px;
-  min-width: 95px;
-}
-
-.star-icon {
-  color: #FFD700;
-  font-size: 1.2rem;
-  text-shadow: 0 0 6px #FFD700;
-}
-
-.star-num {
-  font-family: 'Michroma', sans-serif;
-  font-weight: 900;
-  font-size: 1.1rem;
-  color: #FFF;
+  text-shadow: 0 0 12px #7FFBFD !important;
 }
 
 .carousel-arrow.disabled {
@@ -235,46 +193,167 @@
   cursor: default !important;
 }
 
-/* Main Title Content */
+/* 左上角編號標籤 (Scoped to Activity Page) */
+.arcade-banner-card .card-index-badge {
+  position: absolute;
+  top: 12px;
+  left: 36px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Michroma', sans-serif;
+  pointer-events: auto;
+}
+
+.arcade-banner-card .card-index-badge .index-num {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #04242B;
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 10px rgba(79, 192, 196, 0.6);
+  transition: all 0.3s ease;
+}
+
+.arcade-banner-card .card-index-badge .index-dots {
+  font-size: 0.9rem;
+  font-weight: 900;
+  color: #00a153;
+  letter-spacing: -1.5px;
+  opacity: 0.85;
+  transition: all 0.3s ease;
+}
+
+.arcade-banner-card:hover .card-index-badge .index-num {
+  color: #ffffff;
+  transform: scale(1.1) translateX(2px);
+  text-shadow: 0 0 8px rgba(0, 82, 42, 0.8);
+}
+
+.arcade-banner-card:hover .card-index-badge .index-dots {
+  transform: scale(1.1) translateX(3px);
+  color: #00E676;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+}
+
+/* 中央標題 */
 .banner-content {
   display: flex;
   justify-content: center;
   align-items: center;
   flex: 1;
   text-align: center;
+  padding-left: 85px;
 }
 
 .banner-main-title {
   font-family: 'Noto Sans TC', sans-serif;
   font-weight: 900;
-  font-size: 1.55rem;
-  color: #040301;
-  text-shadow: none;
-  letter-spacing: 3px;
+  font-size: 1.85rem;
+  color: #ffffff;
+  letter-spacing: 4px;
   text-align: center;
+  text-shadow: none;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Pill Shaped Tag  */
+.arcade-banner-card:hover .banner-main-title {
+  transform: scale(1.08);
+  letter-spacing: 5px;
+  text-shadow: 0 0 18px rgba(255, 255, 255, 0.95), 0 0 25px rgba(127, 251, 253, 0.85);
+}
+
+/* 右側黃色區塊 (帶與斜邊平行 160deg 連續條紋與 hover 動態) */
+.banner-right-green-section {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 210px;
+  background:
+    repeating-linear-gradient(160deg, rgba(0, 0, 0, 0.15) 0px, rgba(0, 0, 0, 0.15) 6px, transparent 6px, transparent 12px),
+    linear-gradient(135deg, #ffbf00 0%, #dea600 100%);
+  background-size: 24px 24px, 100% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 15;
+  clip-path: polygon(36px 0, 100% 0, calc(100% - 36px) 100%, 0 100%);
+  box-shadow: -4px 0 20px rgba(230, 203, 0, 0.85), inset 0 0 14px rgba(255, 255, 255, 0.5);
+  transition: all 0.35s ease;
+}
+
+.arcade-banner-card.dimmed .banner-right-green-section {
+  opacity: 0.75;
+  filter: grayscale(25%);
+}
+
+.arcade-banner-card.focused .banner-right-green-section {
+  opacity: 1;
+  background:
+    repeating-linear-gradient(160deg, rgba(255, 255, 255, 0.18) 0px, rgba(255, 255, 255, 0.18) 6px, transparent 6px, transparent 12px),
+    linear-gradient(135deg, #ffbf00 0%, #dea600 100%);
+  background-size: 24px 24px, 100% 100%;
+  box-shadow: -4px 0 28px rgba(230, 203, 0, 1), inset 0 0 18px rgba(255, 255, 255, 0.7);
+}
+
+.arcade-banner-card:hover .banner-right-green-section {
+  animation: yellowCyberStripes 0.8s linear infinite;
+  box-shadow: -6px 0 35px rgba(255, 191, 0, 0.95), inset 0 0 20px rgba(255, 255, 255, 0.85);
+  filter: brightness(1.18);
+}
+
+@keyframes yellowCyberStripes {
+  0% {
+    background-position: 0 0, 0 0;
+  }
+
+  100% {
+    background-position: 24px 0, 0 0;
+  }
+}
+
+/* 膠囊框 */
 .banner-tag {
+  position: relative;
+  z-index: 2;
   font-family: 'Michroma', sans-serif;
-  font-size: 0.92rem;
-  font-weight: 800;
+  font-size: 0.95rem;
+  font-weight: 900;
   color: #ffffff;
-  background: transparent;
   border: 1.5px solid #ffffff;
   border-radius: 20px;
   padding: 6px 18px;
   letter-spacing: 1px;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
   user-select: none;
-  box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(2px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  line-height: 1;
+  transform: none;
+}
+
+.arcade-banner-card.focused .banner-tag {
+  color: #ffffff;
+  border-color: #ffffff;
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.95), inset 0 0 8px rgba(255, 255, 255, 0.6);
+  transform: none;
+}
+
+.arcade-banner-card:hover .banner-tag {
+  transform: scale(1.06);
+  box-shadow: 0 0 16px rgba(255, 255, 255, 1), inset 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* Hover 時暫停 ENTER 呼吸動畫 */
+.arcade-banner-card:hover .banner-tag.start-pulse {
+  animation-play-state: paused;
 }
 
 .banner-tag.start-pulse {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.15);
-  border-color: #ffffff;
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
   animation: pillPulse 0.9s infinite alternate ease-in-out;
 }
 
@@ -282,15 +361,16 @@
   0% {
     opacity: 1;
     transform: scale(1);
-    box-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 14px rgba(255, 255, 255, 0.95);
   }
 
   100% {
-    opacity: 0.45;
+    opacity: 0.85;
     transform: scale(0.96);
-    box-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
   }
 }
+
 
 /* ===== 返回按鈕與側邊欄 ===== */
 .back-to-sem-btn {
@@ -459,8 +539,23 @@
 /* ===== 行動裝置 ===== */
 @media screen and (max-width: 768px) {
   .activity-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
     height: 100vh;
     overflow: hidden;
+    touch-action: none;
+  }
+
+  .activity-page.detail-mode {
+    position: relative;
+    top: auto;
+    left: auto;
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    touch-action: pan-y;
   }
 
   .activity-container {
@@ -469,6 +564,7 @@
     justify-content: flex-start;
     height: calc(100vh - 65px);
     overflow: hidden;
+    touch-action: none;
   }
 
   .arcade-select-stage {
@@ -480,6 +576,7 @@
     align-items: center;
     justify-content: flex-start;
     box-sizing: border-box;
+    touch-action: none;
   }
 
   .arcade-header {
@@ -500,6 +597,7 @@
     align-items: center;
     margin-bottom: 30px;
     margin-top: 15px;
+    touch-action: none;
   }
 
   .arcade-wheel-arrow-up,
@@ -515,6 +613,7 @@
     overflow: hidden;
     display: flex;
     justify-content: center;
+    touch-action: none;
     mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 88%, transparent 100%);
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 88%, transparent 100%);
   }
@@ -536,11 +635,12 @@
     font-size: 0.85rem;
   }
 
+  /* 移動端卡片與組件專屬比例修複 */
   .arcade-banner-card {
-    height: 60px;
-    padding: 0 12px 0 10px;
-    clip-path: polygon(15px 0, 100% 0, calc(100% - 15px) 100%, 0 100%);
-    width: 88vw;
+    height: 74px;
+    padding: 0 100px 0 75px;
+    clip-path: polygon(18px 0, 100% 0, calc(100% - 18px) 100%, 0 100%);
+    width: 90vw;
     max-width: 360px;
     margin: 0 auto !important;
   }
@@ -557,34 +657,47 @@
     transform: translateX(0px) scale(1.06) !important;
   }
 
-  .banner-star-badge {
-    padding: 4px 8px;
-    min-width: 70px;
+  .arcade-banner-card .card-index-badge {
+    top: 8px;
+    left: 24px;
+    gap: 3px;
   }
 
-  .star-icon {
-    font-size: 0.95rem;
+  .arcade-banner-card .card-index-badge .index-num {
+    font-size: 0.68rem;
+    letter-spacing: 0.5px;
   }
 
-  .star-num {
-    font-size: 0.85rem;
+  .arcade-banner-card .card-index-badge .index-dots {
+    font-size: 0.75rem;
   }
 
   .banner-content {
-    margin-left: 10px;
+    margin-left: 0;
+    padding-left: 0;
   }
 
   .banner-main-title {
-    font-size: 1rem;
+    font-size: 1.25rem;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
   }
 
-  .banner-sub-title {
-    font-size: 0.6rem;
+  .banner-right-green-section {
+    width: 98px;
+    clip-path: polygon(18px 0, 100% 0, calc(100% - 18px) 100%, 0 100%);
   }
 
   .banner-tag {
     font-size: 0.5rem;
     padding: 3px 6px;
+    border-radius: 14px;
+    transform: none;
+  }
+
+  .arcade-banner-card.focused .banner-tag,
+  .arcade-banner-card:hover .banner-tag {
+    transform: none;
   }
 
   .activity-sidebar {
@@ -598,9 +711,10 @@
   }
 
   .back-to-sem-btn {
-    margin-left: 0;
+    font-size: 12px;
+    margin-left: 10%;
     width: 100%;
-    max-width: 200px;
+    max-width: 130px;
     margin-bottom: 10px;
   }
 

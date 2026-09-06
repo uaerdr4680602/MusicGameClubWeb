@@ -53,7 +53,7 @@ export default function ActivityPage() {
   }, [focusedIndex])
 
   const centerOffset = isMobile ? mobileCenterOffset : 274
-  const stepHeight = isMobile ? 72 : 102
+  const stepHeight = isMobile ? 88 : 102
 
   const handlePrev = () => {
     setFocusedIndex(prev => Math.max(0, prev - 1))
@@ -108,7 +108,7 @@ export default function ActivityPage() {
   const activeActivity = activities.find(a => a.id === activeId) || filteredActivities[0]
 
   return (
-    <div className="activity-page">
+    <div className={`activity-page${selectedSemester !== null ? ' detail-mode' : ''}`}>
       <Link to="/home" className="logo-link">
         <img src="/img/mg2.png" className="mg-logo" alt="TMGC Logo" />
       </Link>
@@ -150,6 +150,7 @@ export default function ActivityPage() {
                   {semesters.map((sem, idx) => {
                     const isFocused = idx === focusedIndex
                     const diagonalOffset = (focusedIndex - idx) * 31
+
                     return (
                       <button
                         key={sem}
@@ -160,11 +161,22 @@ export default function ActivityPage() {
                         onClick={() => (isFocused ? handleSelectSemester(sem) : setFocusedIndex(idx))}
                         tabIndex={0}
                       >
-                        <div className="banner-content">
-                          <span className="banner-main-title">{sem} 活動紀錄</span>
+                        {/* 左上角編號 */}
+                        <div className="card-index-badge">
+                          <span className="index-num">{sem}</span>
+                          <span className="index-dots">///</span>
                         </div>
-                        <div className={`banner-tag ${isFocused ? 'start-pulse' : ''}`}>
-                          {isFocused ? 'ENTER ▶' : 'SELECT'}
+
+                        {/* 中央標題 */}
+                        <div className="banner-content">
+                          <span className="banner-main-title">➤➤學期紀錄</span>
+                        </div>
+
+                        {/* 右側區塊 */}
+                        <div className={`banner-right-green-section ${isFocused ? 'active' : ''}`}>
+                          <div className={`banner-tag ${isFocused ? 'start-pulse' : ''}`}>
+                            {isFocused ? 'ENTER ▶' : 'SELECT'}
+                          </div>
                         </div>
                       </button>
                     )

@@ -6,6 +6,12 @@
   color: #fff;
 }
 
+.member-page.detail-mode {
+  height: auto;
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
 /* 主容器排版 */
 .member-container {
   display: flex;
@@ -17,7 +23,548 @@
   z-index: 5;
 }
 
+/* ===== 幹部選擇 ===== */
+.member-select-stage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
 
+.member-header {
+  position: absolute;
+  top: clamp(3%, 5.5vh, 8.5%);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* 標題水平排版與左右直線漸層 */
+.member-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 2.2vw, 28px);
+  width: 100%;
+  filter: drop-shadow(0 0 12px rgba(79, 192, 196, 0.85)) drop-shadow(0 0 25px rgba(79, 192, 196, 0.45));
+}
+
+.header-line {
+  height: 2px;
+  width: clamp(50px, 9vw, 150px);
+  border-radius: 2px;
+}
+
+.header-line.left {
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(79, 192, 196, 0.25) 25%,
+      rgba(79, 192, 196, 0.85) 75%,
+      #7FFBFD 100%);
+}
+
+.header-line.right {
+  background: linear-gradient(90deg,
+      #7FFBFD 0%,
+      rgba(79, 192, 196, 0.85) 25%,
+      rgba(79, 192, 196, 0.25) 75%,
+      transparent 100%);
+}
+
+/* 幹部介紹標題 */
+.member-title {
+  font-family: 'Noto Sans TC', 'Michroma', sans-serif;
+  font-size: clamp(2.4rem, 3.8vw, 4rem);
+  font-weight: 900;
+  letter-spacing: 4px;
+  margin: 0;
+  line-height: 1.1;
+  white-space: nowrap;
+
+  /* 僅限文字筆劃內部反光，向右流光動畫 */
+  background: linear-gradient(110deg,
+      #ffffff 0%,
+      #ffffff 38%,
+      #7FFBFD 46%,
+      #ffffff 50%,
+      #e0ffff 54%,
+      #ffffff 62%,
+      #ffffff 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textSheenRight 3.6s infinite ease-in-out;
+}
+
+@keyframes textSheenRight {
+  0% {
+    background-position: 180% 0;
+  }
+
+  60%,
+  100% {
+    background-position: -80% 0;
+  }
+}
+
+/* 英文副標題 */
+.member-title-eng {
+  font-family: 'Michroma', sans-serif;
+  font-size: clamp(0.78rem, 1vw, 1.1rem);
+  font-weight: 900;
+  color: #4FC0C4;
+  letter-spacing: 4px;
+  text-shadow: 0 0 15px #7FFBFD;
+  margin: 4px 0 0 0;
+}
+
+/* 幹部卡片橫向一排 */
+.member-cards-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  width: 96vw;
+  max-width: 1850px;
+  margin-top: clamp(30px, 5vh, 75px);
+}
+
+/* 平行四邊形斜角卡片 */
+.member-select-card.parallelogram-card {
+  position: relative;
+  flex: 1;
+  max-width: clamp(190px, 13.8vw, 275px);
+  min-width: 120px;
+  height: clamp(380px, 67vh, 800px);
+  max-height: 74vh;
+  margin-left: clamp(-36px, -1.9vw, -24px);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  overflow: visible;
+  /* 允許姓名職稱突出四邊形框框 */
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* 內層平行四邊形剪裁框 */
+.card-clip-frame {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(clamp(28px, 2.1vw, 48px) 0, 100% 0, calc(100% - clamp(28px, 2.1vw, 48px)) 100%, 0 100%);
+  overflow: hidden;
+  background: rgba(14, 14, 22, 0.55);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
+  border-top: 1px solid rgba(79, 192, 196, 0.45);
+  transition: all 0.35s ease;
+}
+
+.member-select-card.parallelogram-card:first-child {
+  margin-left: 0;
+}
+
+.member-select-card.parallelogram-card:hover {
+  transform: translateY(-18px);
+  filter: brightness(1.12);
+  z-index: 20;
+}
+
+.member-select-card.parallelogram-card:hover .card-clip-frame {
+  box-shadow: 0 22px 50px rgba(0, 229, 255, 0.3);
+  border-top-color: rgba(127, 251, 253, 0.95);
+}
+
+/* 網格背景 */
+.card-tech-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(79, 192, 196, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79, 192, 196, 0.1) 1px, transparent 1px);
+  background-size: 16px 16px;
+  opacity: 0.8;
+  transition: opacity 0.35s ease;
+}
+
+.member-select-card:hover .card-tech-grid {
+  opacity: 0.35;
+}
+
+/* 頂部編號 */
+.member-select-card .card-index-badge {
+  position: absolute;
+  top: 12px;
+  left: clamp(34px, 2.4vw, 64px);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  pointer-events: auto;
+  font-family: 'Michroma', sans-serif;
+}
+
+.member-select-card .card-index-badge .index-num {
+  font-size: clamp(0.78rem, 0.95vw, 1.1rem);
+  font-weight: 900;
+  color: rgba(79, 192, 196, 0.88);
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 10px rgba(79, 192, 196, 0.6);
+  transition: all 0.3s ease;
+}
+
+.member-select-card .card-index-badge .index-dots {
+  font-size: 0.65rem;
+  color: rgba(255, 215, 0, 0.9);
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.member-select-card:hover .card-index-badge .index-dots {
+  transform: scale(1.15) translateX(5px);
+  color: #00b4b4;
+  text-shadow: 0 0 10px #929292, 0 0 6px #929292;
+}
+
+.member-select-card:hover .card-index-badge .index-num {
+  color: #ffffff;
+  text-shadow: 0 0 15px #dea600, 0 0 6px #8f6b00;
+  transform: scale(1.15) translateX(2px);
+}
+
+/* Border Beam */
+.member-card-beam {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 12;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  overflow: hidden;
+  padding: 2.5px;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.member-select-card:hover .member-card-beam {
+  opacity: 1;
+}
+
+.member-card-beam::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400%;
+  height: 400%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  background: conic-gradient(transparent 0deg,
+      transparent 260deg,
+      #4FC0C4 300deg,
+      #ffffff 345deg,
+      #7FFBFD 360deg);
+  animation: borderBeamRotate 2.5s linear infinite;
+  will-change: transform;
+}
+
+@keyframes borderBeamRotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* 霧面漸層背景 */
+.card-ambient-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.ambient-blur-img {
+  width: 140%;
+  height: 140%;
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  object-fit: cover;
+  filter: blur(30px) saturate(2) brightness(0.85);
+  opacity: 0.4;
+  transform: scale(1.2);
+  transition: filter 0.4s ease;
+}
+
+.member-select-card:hover .ambient-blur-img {
+  filter: blur(20px) saturate(2.4) brightness(1.1);
+}
+
+.frosted-glass-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(0, 0, 0, 0.2) 40%,
+      rgba(0, 0, 0, 0.85) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* 白色漫畫集中線 */
+@property --width {
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 0.7deg;
+}
+
+@property --space {
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 10deg;
+}
+
+.manga-lines {
+  --center-x: 50%;
+  --center-y: 50%;
+  --size-x: 80%;
+  --size-y: 70%;
+  --speed: 0.8s;
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.member-select-card:hover .manga-lines {
+  opacity: 1;
+}
+
+.manga-lines::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-conic-gradient(from 0deg at var(--center-x) var(--center-y), #ffffff 0 var(--width), transparent 0 var(--space)),
+    repeating-conic-gradient(from 3.5deg at var(--center-x) var(--center-y), rgba(255, 255, 255, 0.7) 0 calc(var(--width) * 1.2), transparent 0 calc(var(--space) * 2.2)),
+    repeating-conic-gradient(from 7deg at var(--center-x) var(--center-y), rgba(255, 255, 255, 0.4) 0 calc(var(--width) * 0.8), transparent 0 calc(var(--space) * 1.8));
+  -webkit-mask: radial-gradient(ellipse var(--size-x) var(--size-y) at var(--center-x) var(--center-y), transparent 45%, rgba(0, 0, 0, 0.5) 75%, #000 98%);
+  mask: radial-gradient(ellipse var(--size-x) var(--size-y) at var(--center-x) var(--center-y), transparent 45%, rgba(0, 0, 0, 0.5) 75%, #000 98%);
+  animation: moveAfter var(--speed) steps(10, start) infinite;
+}
+
+@keyframes moveAfter {
+  0% {
+    --width: 0.7deg;
+    --space: 10deg;
+  }
+
+  10% {
+    --width: 0.9deg;
+    --space: 11deg;
+  }
+
+  20% {
+    --width: 0.5deg;
+    --space: 13deg;
+  }
+
+  30% {
+    --width: 0.4deg;
+    --space: 10deg;
+  }
+
+  40% {
+    --width: 1.0deg;
+    --space: 14deg;
+  }
+
+  50% {
+    --width: 1.2deg;
+    --space: 11deg;
+  }
+
+  60% {
+    --width: 0.7deg;
+    --space: 10deg;
+  }
+
+  70% {
+    --width: 0.8deg;
+    --space: 9deg;
+  }
+
+  80% {
+    --width: 0.5deg;
+    --space: 12deg;
+  }
+
+  90% {
+    --width: 0.6deg;
+    --space: 11deg;
+  }
+
+  100% {
+    --width: 0.7deg;
+    --space: 10deg;
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .manga-lines::before {
+    animation-play-state: paused;
+  }
+}
+
+/* 主角色立繪剪裁區 */
+.card-character-crop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.card-character-crop .card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.6));
+  transition: filter 0.35s ease;
+}
+
+.member-select-card:hover .card-character-crop .card-img {
+  filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.85));
+}
+
+/* 姓名與職稱 (電腦版：大名字靠左、職稱在右側，兩者底部 100% 貼齊同一水平線) */
+.member-badge-text {
+  position: absolute;
+  bottom: clamp(16px, 2.2vh, 32px);
+  left: clamp(14px, 1.4vw, 28px);
+  transform: none;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: clamp(6px, 0.6vw, 12px);
+  z-index: 25;
+  pointer-events: none;
+  writing-mode: horizontal-tb;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.badge-name {
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: clamp(2.2rem, 2.8vw, 3.6rem);
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 4px;
+  line-height: 1;
+  text-shadow:
+    -1.5px 1.5px 0 #FF0055,
+    1.5px -1.5px 0 #00E5FF,
+    0 4px 14px rgba(0, 0, 0, 0.95),
+    0 2px 6px rgba(0, 0, 0, 1);
+  transition: all 0.3s ease;
+}
+
+.badge-role {
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  font-family: 'Michroma', 'Noto Sans TC', sans-serif;
+  font-size: clamp(0.75rem, 0.85vw, 1.05rem);
+  font-weight: 800;
+  color: #4FC0C4;
+  letter-spacing: 2px;
+  line-height: 1;
+  text-shadow:
+    -0.5px 0.5px 0 #FF0055,
+    0.5px -0.5px 0 #00E5FF,
+    0 3px 10px rgba(0, 0, 0, 0.95);
+  transition: all 0.3s ease;
+  margin: 0;
+  padding: 0;
+}
+
+.member-select-card:hover .member-badge-text {
+  transform: translateY(-8px);
+}
+
+.member-select-card:hover .badge-name {
+  color: #ffffff;
+  text-shadow:
+    -2px 2px 0 #FF0055,
+    2px -2px 0 #00E5FF,
+    0 0 24px rgba(127, 251, 253, 0.95),
+    0 4px 16px rgba(0, 0, 0, 1);
+  transform: scale(1.05);
+}
+
+.member-select-card:hover .badge-role {
+  color: #00E5FF;
+  text-shadow: 0 0 16px #00E5FF, 0 3px 10px rgba(0, 0, 0, 1);
+}
+
+/* Stage 2 詳情模式側邊欄 */
+.member-sidebar {
+  position: absolute;
+  top: 53%;
+  left: -20px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  z-index: 100;
+}
+
+.member-detail-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
 /* 中央角色立繪區 */
 .character-showcase {
@@ -137,11 +684,6 @@
   margin-top: -2px;
 }
 
-.z-connector {
-  display: block;
-  flex-shrink: 0;
-}
-
 .sub-name-text {
   font-size: 0.95rem;
   font-weight: 800;
@@ -235,42 +777,277 @@
     min-height: 100vh;
   }
 
-  /* 行動版立繪區域：適度縮小並往下擺放 */
+  .member-header {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 4px;
+    width: 100%;
+  }
+
+  .member-title-row {
+    filter: drop-shadow(0 0 10px rgba(79, 192, 196, 0.85));
+  }
+
+  .header-line {
+    width: clamp(24px, 6vw, 60px);
+  }
+
+  .member-title {
+    font-size: clamp(1.6rem, 5.5vw, 2.2rem);
+    letter-spacing: 3px;
+    text-shadow: none;
+  }
+
+  .member-title-eng {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    margin-top: 1px;
+  }
+
+  /* 行動端：螢幕高度動態自適應單欄 */
+  .member-select-stage {
+    height: 100%;
+    min-height: 0;
+    justify-content: space-evenly;
+    padding-bottom: 15px;
+  }
+
+  .member-cards-row {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(4px, 1.2vh, 10px);
+    width: 92vw;
+    max-width: 420px;
+    height: auto;
+    margin: 4px auto 0 auto;
+    padding: 0;
+  }
+
+  .member-select-card.parallelogram-card {
+    position: relative;
+    flex: none;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    height: clamp(54px, 8.5vh, 90px);
+    max-height: none;
+    clip-path: none;
+    border-radius: 2px;
+    margin-left: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  /* 長方形框框 */
+  .card-clip-frame {
+    position: absolute;
+    inset: 0;
+    clip-path: none;
+    border-radius: 2px;
+    background: linear-gradient(90deg,
+        rgba(18, 18, 28, 0.95) 0%,
+        rgba(18, 18, 28, 0.65) 45%,
+        rgba(12, 12, 20, 0.9) 100%);
+    border: none;
+    border-top: 1.5px solid rgba(79, 192, 196, 0.45);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+  }
+
+  .member-select-card .card-index-badge {
+    top: 6px;
+    left: 10px;
+  }
+
+  .member-select-card.parallelogram-card:hover,
+  .member-select-card.parallelogram-card:active {
+    transform: translateX(4px);
+  }
+
+  /* 霧面背景漸層透明 */
+  .card-ambient-bg {
+    -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 25%, transparent 75%);
+    mask-image: linear-gradient(90deg, #000 0%, #000 25%, transparent 75%);
+  }
+
+  /* 立繪人物 100% 完整不透明 */
+  .card-character-crop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 65%;
+    height: 100%;
+    overflow: hidden;
+    justify-content: flex-start;
+    z-index: 2;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .card-character-crop .card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    opacity: 1;
+  }
+
+  /* 手機版：原本橫式排法 (包含英文，名字在上、職稱在下) */
+  .member-badge-text {
+    writing-mode: horizontal-tb;
+    text-orientation: initial;
+    position: absolute;
+    top: 50%;
+    bottom: auto;
+    right: 14px;
+    left: auto;
+    transform: translateY(-50%);
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    gap: 1px;
+    z-index: 5;
+  }
+
+  .badge-name {
+    writing-mode: horizontal-tb;
+    text-orientation: initial;
+    font-size: clamp(1rem, 2.4vh, 1.35rem);
+    letter-spacing: 1.2px;
+    line-height: 1.1;
+    transform: none !important;
+  }
+
+  .badge-role {
+    writing-mode: horizontal-tb;
+    text-orientation: initial;
+    font-size: clamp(0.65rem, 1.4vh, 0.8rem);
+    letter-spacing: 1px;
+    transform: none !important;
+  }
+
+  .badge-role {
+    font-size: clamp(0.52rem, 1.2vh, 0.68rem);
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+  }
+
+  .member-sidebar {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .member-sidebar .back-to-sem-btn {
+    font-size: 12px;
+    margin-left: 10%;
+    width: 100%;
+    max-width: 130px;
+    margin-bottom: 10px;
+  }
+
+  .member-detail-menu {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    margin: 0 0 10px 0;
+    padding: 5px 0;
+    z-index: 10;
+  }
+
+  /* 行動版立繪區域：高大、置中、充滿大器感 */
   .character-showcase {
     margin-left: 0;
-    height: 190px;
+    height: clamp(260px, 36vh, 340px);
     width: 100%;
+    margin-top: 5px;
     margin-bottom: 10px;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+  }
+
+  .character-img-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
   }
 
   .character-img-wrapper.active {
-    animation: slideInFromRightMobile 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    opacity: 1;
+    pointer-events: auto;
+    animation: fadeInMobile 0.35s ease-out forwards;
+  }
+
+  .character-img-wrapper picture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
   }
 
   .character-img {
-    max-height: 190px;
+    height: 100%;
+    max-height: 100%;
+    width: 100%;
+    max-width: 100%;
     object-fit: contain;
+    object-position: center center;
   }
 
   .character-info-panel {
     width: 100%;
     margin-bottom: 20px;
-    gap: 10px;
+    gap: 8px;
+    z-index: 5;
   }
 
   /* 姓名、職稱與自介文字 */
   .char-name-area {
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
 
-  .char-name {
-    font-size: 1.2rem;
+  .slanted-name-box {
+    padding: 4px 18px 4px 10px;
+  }
+
+  .slanted-name-box .char-name {
+    font-size: 1.05rem;
+    letter-spacing: 1.5px;
   }
 
   .sub-name-text {
-    font-size: 0.72rem;
-    letter-spacing: 1px;
+    font-size: 0.65rem;
+    letter-spacing: 0.8px;
   }
 
   .info-card {
@@ -280,10 +1057,6 @@
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-  }
-
-  .info-card::after {
-    display: none;
   }
 
   .info-desc {
@@ -302,14 +1075,14 @@
   }
 }
 
-@keyframes slideInFromRightMobile {
+@keyframes fadeInMobile {
   from {
     opacity: 0;
-    transform: translate(calc(-50% + 60px), -30%);
+    transform: translateY(10px);
   }
 
   to {
     opacity: 1;
-    transform: translate(-50%, -30%);
+    transform: translateY(0);
   }
 }

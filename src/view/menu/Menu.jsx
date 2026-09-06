@@ -6,7 +6,7 @@ import './Menu.css'
 const links = [
   { path: '/home', label: 'HOME' },
   { path: '/about', label: 'ABOUT' },
-  { path: '/member', label: 'CADRE' },
+  { path: '/member', label: 'MEMBER' },
   { path: '/activity', label: 'ACTIVITY' },
   { path: '/contact', label: 'CONTACT' },
 ]
