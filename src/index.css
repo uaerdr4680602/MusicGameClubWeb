@@ -222,17 +222,19 @@ button {
   .member-page .menu-button,
   .activity-page .menu-button {
     width: auto;
-    padding: 10px 8px;
+    padding: 6px 14px;
     font-size: 13px;
     margin-bottom: 0;
-    clip-path: none;
-    background-color: #4FC0C4;
+    white-space: nowrap;
+    background-color: rgba(79, 192, 196, 0.25);
+    border: 1px solid #4FC0C4;
+    border-radius: 20px;
     color: #FFF;
     font-family: 'Noto Sans TC', sans-serif;
     font-weight: 700;
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-    letter-spacing: 2px;
+    writing-mode: horizontal-tb;
+    text-orientation: initial;
+    letter-spacing: 1px;
   }
 
   .member-page .menu-button:hover,
@@ -240,8 +242,9 @@ button {
   .activity-page .menu-button:hover,
   .activity-page .menu-button.active {
     background-color: #C6B853;
+    border-color: #C6B853;
     color: #040301;
-    transform: translateY(3px) scale(1.05);
-    box-shadow: 0 4px 12px rgba(198, 184, 83, 0.5);
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(198, 184, 83, 0.6);
   }
 }
