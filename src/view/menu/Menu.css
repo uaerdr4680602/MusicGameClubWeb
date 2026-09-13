@@ -9,14 +9,13 @@
 }
 
 .top {
-  font-size: clamp(14px, 2vw, 30px);
-  height: 30px;
-  width: 100%;
   position: fixed;
-  top: 5%;
-  right: 10px;
+  top: 2.5%;
+  right: 1.5vw;
+  height: 48px;
+  width: auto;
   opacity: 1;
-  padding: 10px;
+  padding: 0;
   z-index: 100001;
 
   display: flex;
@@ -27,8 +26,12 @@
 
 /* close button */
 .menu-toggle {
-  font-size: clamp(20px, 3vw, 80px);
-  margin-right: 3%;
+  font-size: 38px;
+  line-height: 1;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   color: #ffffff;
   border: none;
@@ -89,13 +92,14 @@
 
 /* logo (mg2.png) link used by all inner pages */
 .logo-link {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
-  left: 2vw;
-  top: 3.5%;
-  width: 25vw;
-  max-width: 320px;
-  min-width: 140px;
+  left: 1.5vw;
+  top: 2.5%;
+  height: 48px;
+  width: fit-content;
   z-index: 1000;
   pointer-events: auto;
   text-decoration: none;
@@ -109,8 +113,9 @@
 
 .mg-logo {
   display: block;
-  width: 100%;
-  height: auto;
+  height: 100%;
+  width: auto;
+  object-fit: contain;
   border: none;
   pointer-events: none;
 }
@@ -130,6 +135,16 @@
 
 /* ===== Mobile ===== */
 @media screen and (max-width: 768px) {
+  .top {
+    top: 18px;
+    right: 14px;
+    height: 32px;
+  }
+
+  .menu-toggle {
+    font-size: 30px;
+  }
+
   .mycount {
     font-size: clamp(24px, 8vw, 48px);
     letter-spacing: 2px;
@@ -140,11 +155,10 @@
   }
 
   .logo-link {
-    top: 2.5%;
-    left: 3vw;
-    width: 55vw;
-    max-width: 220px;
-    min-width: 120px;
+    top: 3%;
+    left: 2%;
+    height: 20px;
+    width: fit-content;
     z-index: 1000;
   }
 
@@ -155,15 +169,25 @@
 
 /* ===== Tablet ===== */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
+  .top {
+    top: 18px;
+    right: 18px;
+    height: 40px;
+  }
+
+  .menu-toggle {
+    font-size: 32px;
+  }
+
   .mycount {
     font-size: clamp(28px, 6vw, 60px);
   }
 
   .logo-link {
-    top: 3%;
-    left: 3vw;
-    width: 40vw;
-    max-width: 260px;
+    top: 18px;
+    left: 18px;
+    height: 40px;
+    width: fit-content;
     z-index: 1000;
   }
 }
