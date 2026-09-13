@@ -40,3 +40,26 @@
   color: #ffffff;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
+
+@media screen and (max-width: 768px) {
+  .about-page {
+    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+    box-sizing: border-box;
+  }
+
+  .about {
+    width: 95%;
+    max-width: 100%;
+  }
+
+  .about p {
+    font-size: clamp(13px, 3.8vw, 16px);
+    line-height: 1.6;
+  }
+}

@@ -305,10 +305,16 @@
     margin-top: -32%;
   }
 
+@media screen and (max-width: 768px) {
   .news-section {
-    min-height: auto;
-    padding: 10px 0 30px;
-    gap: 10px;
+    min-height: 100vh;
+    padding: 20px 0 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    box-sizing: border-box;
   }
 
   .bg2 {
@@ -317,7 +323,7 @@
 
   .news {
     z-index: 1;
-    margin-top: 15px;
+    margin-top: 10px;
   }
 
   .ig-carousel-wrap {
@@ -333,6 +339,12 @@
     padding: 10px 20px !important;
     box-sizing: border-box;
     overflow: visible !important;
+  }
+
+  /* 使 IG 內嵌 iframe 不攔截觸控滑動手勢，實現滑動卡片中間順暢切換下一張 */
+  .ig-carousel-wrap iframe,
+  .ig-carousel-wrap .instagram-media {
+    pointer-events: none !important;
   }
 
   .carousel-arrow,

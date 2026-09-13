@@ -182,8 +182,9 @@ export default function HomePage() {
         </div>
 
         {/* footer */}
-        <footer className="news-footer">© TNUA MUSIC GAME CLUB 2nd</footer>
       </section>
+
+      <footer className="site-footer">© TNUA MUSIC GAME CLUB 2nd</footer>
     </div>
   )
 }

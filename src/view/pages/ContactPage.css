@@ -63,6 +63,13 @@
 
 /* ===== 行動裝置 ===== */
 @media screen and (max-width: 768px) {
+  .contact-page {
+    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+
   .contact-social-links {
     flex-direction: column;
     gap: 24px;
