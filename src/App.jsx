@@ -1,13 +1,15 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { BorderOutlined } from '@ant-design/icons'
-import IndexPage from './view/pages/IndexPage'
-import HomePage from './view/pages/HomePage'
-import AboutPage from './view/pages/AboutPage'
-import MemberPage from './view/pages/MemberPage'
-import ActivityPage from './view/pages/ActivityPage'
-import ContactPage from './view/pages/ContactPage'
-import GamePage from './view/pages/GamePage'
+
+// Dynamic Route Imports (Code Splitting)
+const IndexPage = lazy(() => import('./view/pages/IndexPage'))
+const HomePage = lazy(() => import('./view/pages/HomePage'))
+const AboutPage = lazy(() => import('./view/pages/AboutPage'))
+const MemberPage = lazy(() => import('./view/pages/MemberPage'))
+const ActivityPage = lazy(() => import('./view/pages/ActivityPage'))
+const ContactPage = lazy(() => import('./view/pages/ContactPage'))
+const GamePage = lazy(() => import('./view/pages/GamePage'))
 
 // 鼠標
 function CustomCursor() {
@@ -217,17 +219,19 @@ export default function App() {
     <BrowserRouter>
       <CustomCursor />
       <BgmPlayer />
-      <Routes>
-        <Route path="/" element={<IndexPage />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/member" element={<MemberPage />} />
-        <Route path="/activity" element={<ActivityPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/game" element={<GamePage />} />
-        {/* 404 頁面自動轉向首頁 */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/" element={<IndexPage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/member" element={<MemberPage />} />
+          <Route path="/activity" element={<ActivityPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/game" element={<GamePage />} />
+          {/* 404 頁面自動轉向首頁 */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   )
 }
