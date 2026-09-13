@@ -9,6 +9,7 @@ const links = [
   { path: '/member', label: 'MEMBER' },
   { path: '/activity', label: 'ACTIVITY' },
   { path: '/contact', label: 'CONTACT' },
+  { path: '/game', label: 'GAME' },
 ]
 
 const drawerStyles = {

@@ -27,3 +27,7 @@
 
 ## CONTACT
 ### - 要改直接改socialLinks.jsx
+
+
+## GAME
+### - 遊戲可以在json加

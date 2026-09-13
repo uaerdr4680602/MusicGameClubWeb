@@ -1,0 +1,228 @@
+/* ===== Game Page ===== */
+.game-page {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-container {
+    width: 100%;
+    max-width: 1200px;
+    height: 100vh;
+    padding: clamp(160px, 22vh, 200px) 20px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    z-index: 5;
+    box-sizing: border-box;
+}
+
+/* 標題 */
+.arcade-header {
+    position: absolute;
+    top: clamp(65px, 9.5vh, 110px);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.arcade-title {
+    font-family: 'Noto Sans TC', 'Michroma', sans-serif;
+    font-size: clamp(2.4rem, 3.8vw, 4rem);
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 4px;
+    text-shadow: 0 0 15px #4FC0C4, 0 0 30px #4FC0C4;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.arcade-title-eng {
+    font-family: 'Michroma', sans-serif;
+    font-size: clamp(0.85rem, 1.1vw, 1.1rem);
+    font-weight: 900;
+    color: #4FC0C4;
+    letter-spacing: 4px;
+    text-shadow: 0 0 15px #7FFBFD;
+    margin: 0;
+}
+
+/* 卡片滾動區 */
+.game-cards-scroll-wrap {
+    width: 100%;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 40px 10px 50px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+
+    /* 上下淡出 */
+    mask-image: linear-gradient(to bottom,
+            transparent 0px,
+            black 25px,
+            black calc(100% - 35px),
+            transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom,
+            transparent 0px,
+            black 25px,
+            black calc(100% - 35px),
+            transparent 100%);
+}
+
+.game-cards-scroll-wrap::-webkit-scrollbar {
+    display: none;
+    /* Chrome / Safari */
+}
+
+/* 遊戲卡片區域 */
+.game-cards-row {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.game-col {
+    display: flex;
+    justify-content: center;
+}
+
+/* AntD Card 去背景 */
+.game-card.ant-card {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    background: rgba(18, 18, 28, 0.65) !important;
+    backdrop-filter: blur(2px);
+    border: 1px solid rgba(79, 192, 196, 0.3) !important;
+    border-radius: 12px !important;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* 邊框旋轉流光 */
+.game-card-beam {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 12;
+    opacity: 0.85;
+    transition: opacity 0.35s ease;
+    overflow: hidden;
+    border-radius: 12px;
+    padding: 2px;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+.game-card.ant-card:hover .game-card-beam {
+    opacity: 1;
+}
+
+.game-card-beam::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400%;
+    height: 400%;
+    transform: translate(-50%, -50%) rotate(0deg);
+    background: conic-gradient(transparent 0deg,
+            transparent 260deg,
+            #4FC0C4 300deg,
+            #ffffff 345deg,
+            #7FFBFD 360deg);
+    animation: borderBeamRotate 2.5s linear infinite;
+    will-change: transform;
+}
+
+@keyframes borderBeamRotate {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.game-card.ant-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(127, 251, 253, 0.8) !important;
+    box-shadow: 0 8px 30px rgba(79, 192, 196, 0.35);
+}
+
+.game-card .ant-card-body {
+    background: transparent !important;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.game-card-title {
+    font-family: 'Noto Sans TC', 'Michroma', sans-serif;
+    font-size: 25px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 8px 0;
+    letter-spacing: 1px;
+}
+
+.game-card-desc {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0;
+    line-height: 1.6;
+    white-space: pre-line;
+}
+
+@media screen and (max-width: 768px) {
+    .game-container {
+        padding: 155px 10px 30px;
+    }
+
+    .arcade-header {
+        top: 9%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+    }
+
+    .game-card.ant-card {
+        max-width: 290px;
+    }
+
+    .game-card-title {
+        font-size: 18px;
+    }
+
+    .game-card-desc {
+        font-size: 12px;
+    }
+}

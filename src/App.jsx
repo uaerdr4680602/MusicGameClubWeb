@@ -7,6 +7,7 @@ import AboutPage from './view/pages/AboutPage'
 import MemberPage from './view/pages/MemberPage'
 import ActivityPage from './view/pages/ActivityPage'
 import ContactPage from './view/pages/ContactPage'
+import GamePage from './view/pages/GamePage'
 
 // 鼠標
 function CustomCursor() {
@@ -223,6 +224,7 @@ export default function App() {
         <Route path="/member" element={<MemberPage />} />
         <Route path="/activity" element={<ActivityPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/game" element={<GamePage />} />
         {/* 404 頁面自動轉向首頁 */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
