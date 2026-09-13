@@ -548,23 +548,7 @@
   text-shadow: 0 0 16px #00E5FF, 0 3px 10px rgba(0, 0, 0, 1);
 }
 
-/* Stage 2 詳情模式側邊欄 */
-.member-sidebar {
-  position: absolute;
-  top: 53%;
-  left: -20px;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  z-index: 100;
-}
 
-.member-detail-menu {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
 
 /* 中央角色立繪區 */
 .character-showcase {
@@ -940,38 +924,7 @@
     line-height: 1.1;
   }
 
-  .member-sidebar {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    width: 100%;
-    align-items: center;
-    margin-bottom: 10px;
-  }
 
-  .member-sidebar .back-to-sem-btn {
-    font-size: 12px;
-    margin: 0 auto 10px auto;
-    width: auto;
-    max-width: 130px;
-  }
-
-  .member-detail-menu {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    margin: 0 0 10px 0;
-    padding: 5px 0;
-    z-index: 10;
-  }
 
   /* 行動版立繪區域：高大、置中、充滿大器感 */
   .character-showcase {

@@ -90,11 +90,11 @@ export default function MemberPage() {
           /* ===== 詳細資料 ===== */
           <>
             {/* 側邊欄：BACK 按鈕與成員選單 */}
-            <div className="activity-sidebar member-sidebar">
+            <div className="activity-sidebar">
               <button className="back-to-sem-btn" onClick={() => setSelectedMember(null)}>
                 ◀ BACK
               </button>
-              <div className="menu member-detail-menu">
+              <div className="menu">
                 {members.map(m => {
                   const isActive = activeId === m.id
                   return (
