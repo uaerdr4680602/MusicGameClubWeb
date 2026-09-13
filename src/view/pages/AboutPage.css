@@ -33,3 +33,10 @@
   text-decoration: none;
   margin: 0;
 }
+
+.about b,
+.about strong {
+  font-weight: 900;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
