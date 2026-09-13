@@ -239,8 +239,11 @@
   }
 
   .skip-btn {
-    top: 75%;
-    font-size: 15px;
+    top: 82%;
+    right: 6%;
+    font-size: 12px;
+    padding: 6px 14px;
+    border-width: 1.5px;
   }
 }
 
@@ -275,7 +278,10 @@
   }
 
   .skip-btn {
-    top: 75%;
-    font-size: 15px;
+    top: 82%;
+    right: 6%;
+    font-size: 14px;
+    padding: 8px 16px;
+    border-width: 1.5px;
   }
 }

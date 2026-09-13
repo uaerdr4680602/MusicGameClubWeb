@@ -1,21 +1,28 @@
 /* ===== About Page ===== */
 .about-page {
-  min-height: 100vh;
+  height: 100vh;
   position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .about {
-  position: absolute;
-  top: 15%;
+  position: relative;
+  top: auto;
+  left: auto;
+  transform: none;
   padding: 0;
   text-align: center;
-  left: 50%;
-  transform: translateX(-50%);
   margin: 0;
+  width: 90%;
+  max-width: 800px;
+  z-index: 10;
 }
 
 .about p {
-  font-size: clamp(10px, 2vw, 18px);
+  font-size: clamp(14px, 2vw, 18px);
   text-align: center;
   font-family: 'Michroma', 'Noto Sans TC', sans-serif;
   font-optical-sizing: auto;

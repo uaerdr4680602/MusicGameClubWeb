@@ -36,6 +36,7 @@ function InstagramEmbed({ permalink }) {
         margin: '1px auto',
         maxWidth: '540px',
         minWidth: '326px',
+        minHeight: '540px',
         padding: 0,
         width: 'calc(100% - 2px)',
       }}
@@ -167,6 +168,7 @@ export default function HomePage() {
         <div className="ig-carousel-wrap">
           <Carousel
             arrows
+            draggable
             infinite
             autoplay
             autoplaySpeed={5000}

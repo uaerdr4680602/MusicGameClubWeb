@@ -89,8 +89,21 @@ html {
 body {
   margin: 0 0;
   font-family: 'Michroma', 'Noto Sans TC', sans-serif;
-  background: #000 url('/img/bg.jpg') center center / cover no-repeat fixed;
+  background-color: #000;
   min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -999;
+  background: #000 url('/img/bg.jpg') center center / cover no-repeat;
+  pointer-events: none;
 }
 
 #root {
