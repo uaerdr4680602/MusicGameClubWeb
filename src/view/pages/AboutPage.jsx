@@ -7,7 +7,7 @@ export default function AboutPage() {
   return (
     <div className="about-page">
       <Link to="/home" className="logo-link">
-        <img src="/img/mg2.png" className="mg-logo" alt="TMGC Logo" />
+        <img src="/img/mg2.webp" className="mg-logo" alt="TMGC Logo" />
       </Link>
 
       <Menu />

@@ -17,8 +17,11 @@
 * 換幹部直接改同檔名取代資料夾內圖片就ok
 
 ### - member如果要有不同版本圖
-* "imgDesktop": "/img/member/---.png",
-* "imgMobile": "/img/member/---.png",
+* "imgDesktop": "/img/member/---.webp",
+* "imgMobile": "/img/member/---.webp",
+
+### - 有少幹部成員
+* 丟members.json的_disabled_users裡面
 
 
 ## ACTIVITY
@@ -31,3 +34,37 @@
 
 ## GAME
 ### - 遊戲可以在json加
+
+
+## 任何圖片
+* 支援 `.jpg`、`.jpeg`、`.png` 與 `.gif`
+
+### - 第一次使用先安裝轉檔工具(Homebrew)
+```bash
+brew install imagemagick ffmpeg
+```
+
+### - 圖片最佳化轉檔
+```bash
+npm run images:webp
+```
+這個指令會：
+* 將 `public/img/` 的 JPG、JPEG、PNG 轉成 WebP、GIF轉成動畫的WebP
+* 把程式與 JSON 圖片路徑改成 `.webp`
+* 全部轉換成功後刪除原始圖片
+
+
+### - 更新活動資料
+* 新增或刪除活動圖片，才需要執行(有變名稱)
+* 掃描活動資料夾，並自動更新重新產生:
+```bash
+npm run gen
+```
+
+* 流程：
+```bash
+npm run images:webp
+npm run gen        <---（看情況）
+```
+
+### - 以上指令需要在本機執行

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { DEFAULT_MASTER_VOLUME } from '../../audioSettings'
 import './IndexPage.css'
 
 const lines = [
@@ -32,11 +33,31 @@ export default function IndexPage() {
       const audio = audioRef.current
       audio.loop = true
       audio.currentTime = 0
-      audio.volume = 0.5
-      audio.play().catch(() => { })
+      const saved = Number(localStorage.getItem('masterVolume'))
+      const masterVolume = Number.isFinite(saved) ? saved : DEFAULT_MASTER_VOLUME
+      audio.volume = 0.5 * masterVolume
+      if (masterVolume > 0) {
+        audio.play().catch(() => { })
+      }
     }
     setStarted(true)
   }
+
+  useEffect(() => {
+    function handleMasterVolumeChange(event) {
+      if (audioRef.current) {
+        audioRef.current.volume = 0.5 * event.detail
+        if (event.detail === 0) {
+          audioRef.current.pause()
+        } else if (started && audioRef.current.paused) {
+          audioRef.current.play().catch(() => { })
+        }
+      }
+    }
+
+    window.addEventListener('master-volume-change', handleMasterVolumeChange)
+    return () => window.removeEventListener('master-volume-change', handleMasterVolumeChange)
+  }, [started])
 
   useEffect(() => {
     if (!started) return
@@ -136,10 +157,10 @@ export default function IndexPage() {
       )}
 
       <div id="main-content" className="main-content" style={{ visibility: visible ? 'visible' : 'hidden' }}>
-        <img src="/img/girl.gif" className="left-img float-girl" alt="" />
-        <img src="/img/wolf.gif" className="right-img float-wolf" alt="" />
-        <img src="/img/butterfly.gif" className="center-img" style={{ opacity: 0.7 }} alt="" />
-        <img src="/img/mg.png" className="center-img" alt="TMGC logo" />
+        <img src="/img/girl.webp" className="left-img float-girl" alt="" />
+        <img src="/img/wolf.webp" className="right-img float-wolf" alt="" />
+        <img src="/img/butterfly.webp" className="center-img" style={{ opacity: 0.7 }} alt="" />
+        <img src="/img/mg.webp" className="center-img" alt="TMGC logo" />
         <button
           className="enter-btn"
           onClick={enterSite}

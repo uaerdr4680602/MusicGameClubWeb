@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom'
 import Menu from '../menu/Menu'
 import './MemberPage.css'
 
-import members from '../../json/members.json'
+import membersData from '../../json/members.json'
+
+const members = membersData.members
 
 export default function MemberPage() {
   const [selectedMember, setSelectedMember] = useState(null)
@@ -19,7 +21,7 @@ export default function MemberPage() {
   return (
     <div className={`member-page${selectedMember !== null ? ' detail-mode' : ''}`}>
       <Link to="/home" className="logo-link">
-        <img src="/img/mg2.png" className="mg-logo" alt="TMGC Logo" />
+        <img src="/img/mg2.webp" className="mg-logo" alt="TMGC Logo" />
       </Link>
 
       <Menu />

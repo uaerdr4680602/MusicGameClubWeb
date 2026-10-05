@@ -110,7 +110,7 @@ export default function ActivityPage() {
   return (
     <div className={`activity-page${selectedSemester !== null ? ' detail-mode' : ''}`}>
       <Link to="/home" className="logo-link">
-        <img src="/img/mg2.png" className="mg-logo" alt="TMGC Logo" />
+        <img src="/img/mg2.webp" className="mg-logo" alt="TMGC Logo" />
       </Link>
 
       <Menu />

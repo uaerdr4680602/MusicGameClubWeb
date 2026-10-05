@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { BorderOutlined } from '@ant-design/icons'
+import { DEFAULT_MASTER_VOLUME } from './audioSettings'
 
 // Dynamic Route Imports (Code Splitting)
 const IndexPage = lazy(() => import('./view/pages/IndexPage'))
@@ -77,24 +78,65 @@ function BgmPlayer() {
   const bgmRef = useRef(null)
   const fadeTimerRef = useRef(null)
   const loopCheckTimerRef = useRef(null)
+  const pausedByVolumeRef = useRef(false)
+  const savedMasterVolume = Number(localStorage.getItem('masterVolume'))
+  const masterVolumeRef = useRef(
+    Number.isFinite(savedMasterVolume) ? savedMasterVolume : DEFAULT_MASTER_VOLUME,
+  )
+
+  useEffect(() => {
+    function handleMasterVolumeChange(event) {
+      const nextVolume = Number(event.detail)
+      if (!Number.isFinite(nextVolume)) return
+
+      masterVolumeRef.current = nextVolume
+      if (bgmRef.current) {
+        bgmRef.current.volume = 0.45 * nextVolume
+        if (nextVolume === 0) {
+          pausedByVolumeRef.current = !bgmRef.current.paused
+          bgmRef.current.pause()
+        } else if (pausedByVolumeRef.current && location.pathname !== '/') {
+          pausedByVolumeRef.current = false
+          bgmRef.current.play().catch(() => { })
+        }
+      }
+    }
+
+    window.addEventListener('master-volume-change', handleMasterVolumeChange)
+    return () => window.removeEventListener('master-volume-change', handleMasterVolumeChange)
+  }, [location.pathname])
 
   useEffect(() => {
     if (!bgmRef.current) {
       const audio = new Audio('/bgm/bgm.mp3')
-      audio.loop = false
+      audio.loop = true
       audio.volume = 0
       bgmRef.current = audio
     }
 
     const bgm = bgmRef.current
-    const TARGET_VOL = 0.35
+    const TARGET_VOL = 0.45 * masterVolumeRef.current
     const FADE_DURATION = 1000 // 淡入淡出時間 1 秒
     const INTERVAL_MS = 10 // 每 10 毫秒更新音量
     const totalSteps = FADE_DURATION / INTERVAL_MS
 
+    function handleEnded() {
+      if (location.pathname !== '/') {
+        bgm.currentTime = 0
+        fadeIn()
+      }
+    }
+
+    bgm.addEventListener('ended', handleEnded)
+
     // 音量淡入
     function fadeIn() {
       if (fadeTimerRef.current) clearInterval(fadeTimerRef.current)
+      if (masterVolumeRef.current === 0) {
+        bgm.pause()
+        bgm.volume = 0
+        return
+      }
       if (bgm.paused) {
         bgm.volume = 0
         bgm.play().catch(() => {
@@ -175,6 +217,8 @@ function BgmPlayer() {
 
     return () => {
       if (loopCheckTimerRef.current) clearInterval(loopCheckTimerRef.current)
+      if (fadeTimerRef.current) clearInterval(fadeTimerRef.current)
+      bgm.removeEventListener('ended', handleEnded)
     }
   }, [location.pathname])
 
@@ -187,7 +231,10 @@ export default function App() {
     function handleGlobalClick() {
       try {
         const sound = new Audio('/bgm/click.mp3')
-        sound.volume = 0.1
+        const saved = Number(localStorage.getItem('masterVolume'))
+        const masterVolume = Number.isFinite(saved) ? saved : DEFAULT_MASTER_VOLUME
+        if (masterVolume === 0) return
+        sound.volume = 0.1 * masterVolume
         sound.play().catch(() => { })
       } catch {
         // ignore

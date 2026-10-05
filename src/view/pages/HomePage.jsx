@@ -119,7 +119,7 @@ export default function HomePage() {
     <div className="home-page">
       {showLoader && (
         <div className={`home-loader ${!loading ? 'hide' : ''}`}>
-          <img src="/img/mg2.png" className="water-logo-single" alt="Now Loading..." />
+          <img src="/img/mg2.webp" className="water-logo-single" alt="Now Loading..." />
         </div>
       )}
 
@@ -128,15 +128,15 @@ export default function HomePage() {
       {/* home */}
       <section className="hero-section">
         <div>
-          <img src="/img/card2.jpg" className="bg1" alt="" />
+          <img src="/img/card2.webp" className="bg1" alt="" />
           <div className="reflection-container">
-            <img src="/img/card2.jpg" className="reflection" alt="" />
+            <img src="/img/card2.webp" className="reflection" alt="" />
           </div>
         </div>
 
         <div>
           <Link to="/home" className="home-logo-link">
-            <img ref={mgRef} src="/img/mg2.png" className="mg" alt="TMGC Logo" />
+            <img ref={mgRef} src="/img/mg2.webp" className="mg" alt="TMGC Logo" />
           </Link>
         </div>
 
@@ -158,7 +158,7 @@ export default function HomePage() {
 
       {/* News Section */}
       <section className="news-section">
-        <img src="/img/butterfly.png" className="bg2" alt="" />
+        <img src="/img/butterfly.webp" className="bg2" alt="" />
 
         <div className="news">
           <p>NEWS</p>

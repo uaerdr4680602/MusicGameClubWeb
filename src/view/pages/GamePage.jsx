@@ -19,12 +19,12 @@ export default function GamePage() {
     return (
         <div className="game-page">
             <Link to="/home" className="logo-link">
-                <img src="/img/mg2.png" className="mg-logo" alt="TMGC Logo" />
+                <img src="/img/mg2.webp" className="mg-logo" alt="TMGC Logo" />
             </Link>
 
             <div className="bg-cha">
-                <img src="/img/girl.png" className="left-img" alt="" />
-                <img src="/img/wolf.png" className="right-img" alt="" />
+                <img src="/img/girl.webp" className="left-img" alt="" />
+                <img src="/img/wolf.webp" className="right-img" alt="" />
             </div>
 
             <Menu />

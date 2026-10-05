@@ -102,7 +102,7 @@ body::before {
   width: 100vw;
   height: 100vh;
   z-index: -999;
-  background: #000 url('/img/bg.jpg') center center / cover no-repeat;
+  background: #000 url('/img/bg.webp') center center / cover no-repeat;
   pointer-events: none;
 }
 
