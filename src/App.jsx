@@ -93,7 +93,7 @@ function BgmPlayer() {
       if (bgmRef.current) {
         bgmRef.current.volume = 0.45 * nextVolume
         if (nextVolume === 0) {
-          pausedByVolumeRef.current = !bgmRef.current.paused
+          pausedByVolumeRef.current = true
           bgmRef.current.pause()
         } else if (pausedByVolumeRef.current && location.pathname !== '/') {
           pausedByVolumeRef.current = false
@@ -133,6 +133,7 @@ function BgmPlayer() {
     function fadeIn() {
       if (fadeTimerRef.current) clearInterval(fadeTimerRef.current)
       if (masterVolumeRef.current === 0) {
+        pausedByVolumeRef.current = true
         bgm.pause()
         bgm.volume = 0
         return
@@ -233,8 +234,9 @@ export default function App() {
         const sound = new Audio('/bgm/click.mp3')
         const saved = Number(localStorage.getItem('masterVolume'))
         const masterVolume = Number.isFinite(saved) ? saved : DEFAULT_MASTER_VOLUME
-        if (masterVolume === 0) return
-        sound.volume = 0.1 * masterVolume
+        const isIndexPage = window.location.pathname === '/'
+        if (!isIndexPage && masterVolume === 0) return
+        sound.volume = isIndexPage ? 0.1 : 0.1 * masterVolume
         sound.play().catch(() => { })
       } catch {
         // ignore
