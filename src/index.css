@@ -250,7 +250,7 @@ button {
   }
 
   .back-to-sem-btn {
-    font-size: 12px;
+    font-size: 14px;
     margin-left: 10%;
     width: 100%;
     max-width: 130px;
@@ -276,7 +276,7 @@ button {
   .menu-button {
     width: auto;
     padding: 10px 8px;
-    font-size: 13px;
+    font-size: 14px;
     margin-bottom: 0;
     clip-path: none;
     background-color: #4FC0C4;

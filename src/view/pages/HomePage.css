@@ -285,11 +285,17 @@
   }
 
   .reflection-container {
-    height: 20vh;
+    height: 24vh;
+  }
+
+  .bg1,
+  .reflection {
+    width: 108%;
+    height: auto;
   }
 
   .mg {
-    height: 18vh;
+    height: auto;
     margin-top: -32%;
   }
 

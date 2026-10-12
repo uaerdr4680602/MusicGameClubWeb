@@ -787,7 +787,7 @@
   }
 
   .member-title-eng {
-    font-size: 0.65rem;
+    font-size: 0.8rem;
     letter-spacing: 2px;
     margin-top: 1px;
   }
@@ -913,18 +913,10 @@
   .badge-role {
     writing-mode: horizontal-tb;
     text-orientation: initial;
-    font-size: clamp(0.65rem, 1.4vh, 0.8rem);
+    font-size: clamp(0.75rem, 1.6vh, 0.9rem);
     letter-spacing: 1px;
     transform: none !important;
   }
-
-  .badge-role {
-    font-size: clamp(0.52rem, 1.2vh, 0.68rem);
-    letter-spacing: 0.5px;
-    line-height: 1.1;
-  }
-
-
 
   /* 行動版立繪區域：高大、置中、充滿大器感 */
   .character-showcase {
@@ -998,7 +990,7 @@
   }
 
   .sub-name-text {
-    font-size: 0.65rem;
+    font-size: 0.8rem;
     letter-spacing: 0.8px;
   }
 
@@ -1017,13 +1009,13 @@
   }
 
   .info-desc p {
-    font-size: 0.82rem;
+    font-size: 0.95rem;
     line-height: 1.5;
     margin-bottom: 4px;
   }
 
   .member-social-link {
-    font-size: 0.8rem;
+    font-size: 0.95rem;
   }
 }
 

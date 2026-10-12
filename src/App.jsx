@@ -276,7 +276,7 @@ export default function App() {
           <Route path="/member" element={<MemberPage />} />
           <Route path="/activity" element={<ActivityPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/game" element={<GamePage />} />
+          {/* <Route path="/game" element={<GamePage />} /> */}
           {/* 404 頁面自動轉向首頁 */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

@@ -628,7 +628,7 @@
   }
 
   .arcade-title-eng {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
   }
 
   .arcade-subtitle {
@@ -664,12 +664,12 @@
   }
 
   .arcade-banner-card .card-index-badge .index-num {
-    font-size: 0.68rem;
+    font-size: 0.8rem;
     letter-spacing: 0.5px;
   }
 
   .arcade-banner-card .card-index-badge .index-dots {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
   }
 
   .banner-content {
@@ -689,7 +689,7 @@
   }
 
   .banner-tag {
-    font-size: 0.5rem;
+    font-size: 0.75rem;
     padding: 3px 6px;
     border-radius: 14px;
     transform: none;
@@ -711,7 +711,7 @@
   }
 
   .back-to-sem-btn {
-    font-size: 12px;
+    font-size: 14px;
     margin-left: 10%;
     width: 100%;
     max-width: 130px;
@@ -760,7 +760,7 @@
   }
 
   .activity-body p {
-    font-size: 0.82rem;
+    font-size: 0.95rem;
     line-height: 1.45;
     margin-bottom: 4px;
   }
