@@ -8,6 +8,7 @@
     "gen": "node js/genAct.js",
     "images:webp": "node js/convertImages.js",
     "build": "vite build",
+    "postbuild": "node js/createSpaFallback.js",
     "deploy": "npm run build && git add -f dist && git commit -m 'Deploy' && git push origin $(git subtree split --prefix dist main):refs/heads/gh-pages --force && git reset HEAD~1",
     "lint": "oxlint",
     "preview": "vite preview"
