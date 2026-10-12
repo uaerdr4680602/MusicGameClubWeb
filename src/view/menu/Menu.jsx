@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { ConfigProvider, Drawer } from 'antd'
 import { DEFAULT_MASTER_VOLUME } from '../../audioSettings'
@@ -46,11 +46,16 @@ const drawerStyles = {
 
 export default function Menu() {
   const [open, setOpen] = useState(false)
+  const volumeInputRef = useRef(null)
   const [volume, setVolume] = useState(() => {
     const saved = Number(localStorage.getItem('masterVolume'))
     return Number.isFinite(saved) ? saved : DEFAULT_MASTER_VOLUME
   })
   const location = useLocation()
+  const setVolumeInputRef = node => {
+    volumeInputRef.current = node
+    node?.style.setProperty('--volume', `${volume * 100}%`)
+  }
 
   function handleVolumeChange(event) {
     const nextVolume = Number(event.target.value)
@@ -58,6 +63,10 @@ export default function Menu() {
     localStorage.setItem('masterVolume', String(nextVolume))
     window.dispatchEvent(new CustomEvent('master-volume-change', { detail: nextVolume }))
   }
+
+  useEffect(() => {
+    volumeInputRef.current?.style.setProperty('--volume', `${volume * 100}%`)
+  }, [volume])
 
   return (
     <div id="top" className="top">
@@ -104,6 +113,7 @@ export default function Menu() {
               ))}
               <div className={`volume-control${volume === 1 ? ' full' : ''}`}>
                 <input
+                  ref={setVolumeInputRef}
                   type="range"
                   min="0"
                   max="1"
@@ -111,7 +121,6 @@ export default function Menu() {
                   value={volume}
                   onChange={handleVolumeChange}
                   aria-label="全域音量"
-                  style={{ '--volume': `${volume * 100}%` }}
                 />
                 <span>{Math.round(volume * 100)}%</span>
               </div>

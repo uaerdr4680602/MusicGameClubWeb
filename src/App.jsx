@@ -10,7 +10,7 @@ const AboutPage = lazy(() => import('./view/pages/AboutPage'))
 const MemberPage = lazy(() => import('./view/pages/MemberPage'))
 const ActivityPage = lazy(() => import('./view/pages/ActivityPage'))
 const ContactPage = lazy(() => import('./view/pages/ContactPage'))
-const GamePage = lazy(() => import('./view/pages/GamePage'))
+// const GamePage = lazy(() => import('./view/pages/GamePage'))
 
 // 鼠標
 function CustomCursor() {

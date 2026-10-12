@@ -140,28 +140,30 @@
   transition: box-shadow 0.2s ease, background 0.2s ease;
 }
 
-.volume-control input:hover::-webkit-slider-thumb,
-.volume-control input:focus-visible::-webkit-slider-thumb {
-  background: #4FC0C4;
-  box-shadow: 0 0 8px #4FC0C4, 0 0 18px rgba(79, 192, 196, 0.8);
-}
+@media (hover: hover) {
+  .volume-control input:hover::-webkit-slider-thumb,
+  .volume-control input:focus-visible::-webkit-slider-thumb {
+    background: #4FC0C4;
+    box-shadow: 0 0 8px #4FC0C4, 0 0 18px rgba(79, 192, 196, 0.8);
+  }
 
-.volume-control input:hover::-moz-range-thumb,
-.volume-control input:focus-visible::-moz-range-thumb {
-  background: #4FC0C4;
-  box-shadow: 0 0 8px #4FC0C4, 0 0 18px rgba(79, 192, 196, 0.8);
-}
+  .volume-control input:hover::-moz-range-thumb,
+  .volume-control input:focus-visible::-moz-range-thumb {
+    background: #4FC0C4;
+    box-shadow: 0 0 8px #4FC0C4, 0 0 18px rgba(79, 192, 196, 0.8);
+  }
 
-.volume-control input:hover,
-.volume-control input:focus-visible {
-  background: linear-gradient(
-    to right,
-    #4FC0C4 0%,
-    #4FC0C4 var(--volume, 100%),
-    rgba(79, 192, 196, 0.35) var(--volume, 100%),
-    rgba(79, 192, 196, 0.35) 100%
-  );
-  box-shadow: 0 0 8px rgba(79, 192, 196, 0.8), 0 0 18px rgba(79, 192, 196, 0.45);
+  .volume-control input:hover,
+  .volume-control input:focus-visible {
+    background: linear-gradient(
+      to right,
+      #4FC0C4 0%,
+      #4FC0C4 var(--volume, 100%),
+      rgba(79, 192, 196, 0.35) var(--volume, 100%),
+      rgba(79, 192, 196, 0.35) 100%
+    );
+    box-shadow: 0 0 8px rgba(79, 192, 196, 0.8), 0 0 18px rgba(79, 192, 196, 0.45);
+  }
 }
 
 /* logo (mg2.webp) link used by all inner pages */
